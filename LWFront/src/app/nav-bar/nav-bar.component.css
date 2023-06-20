@@ -1,6 +1,4 @@
 :host {
-    font-family: 'Great Vibes', cursive;
-    font-size: 14px;
     color: #333;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -29,17 +27,25 @@ p {
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 50px;
     display: flex;
     align-items: center;
-    background-color: #E3F2FD;
-    color: #42A5F5;
-    font-size: 27px;
+    background-color: #363C49;
+    color: #94CFBB;
+    font-size: 24px;
     font-weight: 600;
+    outline: auto;
+    outline-style: dashed;
+    outline-width: 1px;
+}
+
+.Title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
 }
 
 .toolbar img {
-    margin: 0 16px;
+    margin-left: 21px;
 }
 
 .toolbar #twitter-logo {
@@ -55,4 +61,56 @@ p {
 .toolbar #twitter-logo:hover,
 .toolbar #youtube-logo:hover {
     opacity: 0.8;
+}
+
+.dot {
+    height: 35px;
+    width: 35px;
+    background-color: #94CFBB;
+    opacity: 15%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 25px;
+    position: absolute;
+}
+
+.Login {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+}
+
+.SignUp {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+}
+
+.user {
+    width: 35px;
+    height: 35px;
+    border-radius: 30px;
+    outline: solid;
+    outline-color: #94CFBB;
+    outline-width: 2px;
+    margin-right: 30px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+
+}
+
+.user img {
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    
 }

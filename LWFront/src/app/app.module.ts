@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

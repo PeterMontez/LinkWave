@@ -1,0 +1,40 @@
+<div class="bg"></div>
+<div class="signup-box">
+    <h2>Sign Up</h2>
+    <form>
+        <div class="profile-pic">
+            <label class="-label" for="file">
+                <span class="glyphicon glyphicon-camera"></span>
+                <span>Change Image</span>
+            </label>
+            <input id="file" type="file" (change)="uploadFile($event)">
+            <input type="file" class="d-none"  (change)="onFileSelected(imageInput.files)" #imageInput
+                width="200" />
+        </div>
+        <div style="height: 20px;"></div>
+        <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Username</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="" required="">
+            <label>Date of Birth</label>
+        </div>
+
+        <div class="user-box">
+            <input type="password" name="" required="">
+            <label>Password</label>
+        </div>
+        <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+        </a>
+    </form>
+</div>

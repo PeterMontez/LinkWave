@@ -7,19 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class SignUpComponent {
-    uploadFile(event: Event) {
-        const element = event.currentTarget as HTMLInputElement;
-        let fileList: FileList | null = element.files;
-        if (fileList) {
-          console.log("FileUpload -> files", fileList);
-        }
-        var image = document.getElementById("output");
-        image.src
-    }
+    
 }
 
 // var loadFile = function (event) {
 //     var image = document.getElementById("output");
 //     image.src = URL.createObjectURL(event.target.files[0]);
 //   };
-  

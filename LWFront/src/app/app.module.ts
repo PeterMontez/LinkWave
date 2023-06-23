@@ -8,13 +8,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { FeedPostsComponent } from './feed-posts/feed-posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     LoginPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    SideBarComponent,
+    SearchFormComponent,
+    FeedPostsComponent
   ],
   imports: [
     BrowserModule,

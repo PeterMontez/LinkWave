@@ -7,9 +7,8 @@
                 <span class="glyphicon glyphicon-camera"></span>
                 <span>Change Image</span>
             </label>
-            <input id="file" type="file" (change)="uploadFile($event)">
-            <input type="file" class="d-none"  (change)="onFileSelected(imageInput.files)" #imageInput
-                width="200" />
+            <input id="file" type="file" onchange="selectFile(event)" />
+            <img src="../../assets/img/default.jpg" id="output" width="200" />
         </div>
         <div style="height: 20px;"></div>
         <div class="user-box">

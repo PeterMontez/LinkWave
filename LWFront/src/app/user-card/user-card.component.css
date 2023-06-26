@@ -1,0 +1,27 @@
+body {
+    /* background-color: #363C49; */
+    margin-top: 50px;
+}
+
+.h7 {
+    font-size: 0.8rem;
+    color: #adcfae;
+}
+
+.h5 {
+    color: #87c1ff;
+}
+
+.h6 {
+    color: #87c1ff;
+}
+
+.card {
+    background-color: #1c2733;
+}
+
+.list-group-item {
+    background-color: #213142;
+    color: #c2d8f0;
+}
+

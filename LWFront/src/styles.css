@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* MAIN COLORS */
+:root{
+
+    --pri-color: #363C49;
+    --sec-color: #464F67;
+    --ter-color: #55699C;
+    --qua-color: #94CFBB;
+
+    --pri2-color: #2B6CA4;
+    --sec2-color: #4E9AEB;
+    --ter2-color: #64DCED;
+    --qua2-color: #71F1E3;
+
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

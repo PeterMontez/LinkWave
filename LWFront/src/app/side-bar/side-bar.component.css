@@ -34,7 +34,8 @@
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-    background-color: #555;
+    transition: 0.2s;
+    background-color: #2B6CA4;
     color: white;
 }
 

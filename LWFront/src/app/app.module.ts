@@ -11,6 +11,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { FeedPostsComponent } from './feed-posts/feed-posts.component';
+import { MainFeedComponent } from './main-feed/main-feed.component';
+import { FeedPostsV2Component } from './feed-posts-v2/feed-posts-v2.component';
+import { SideCardsComponent } from './side-cards/side-cards.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { FeedPostsComponent } from './feed-posts/feed-posts.component';
     SignUpComponent,
     SideBarComponent,
     SearchFormComponent,
-    FeedPostsComponent
+    FeedPostsComponent,
+    MainFeedComponent,
+    FeedPostsV2Component,
+    SideCardsComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,

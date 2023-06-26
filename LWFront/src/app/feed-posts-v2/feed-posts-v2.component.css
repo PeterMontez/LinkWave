@@ -1,0 +1,56 @@
+body {
+    /* background-color: #363C49; */
+}
+
+.h7 {
+    font-size: 0.8rem;
+}
+
+.card-header {
+    background-color: #1c2733;
+}
+
+.card-body {
+    background-color: #213142;
+}
+
+.card-footer {
+    background-color: #1c2733;
+}
+
+.card-title {
+    color: #2dee94;
+}
+
+.card-text {
+    color: #adcfae;
+}
+
+.h5 {
+    color: #87c1ff;
+}
+
+.menu i {
+    color: #fff;
+}
+
+
+.gedf-wrapper {
+    margin-top: 0.97rem;
+}
+
+@media (min-width: 992px) {
+    .gedf-main {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .gedf-card {
+        margin-bottom: 2.77rem;
+    }
+}
+
+/**Reset Bootstrap*/
+.dropdown-toggle::after {
+    content: none;
+    display: none;
+}

@@ -16,6 +16,8 @@ import { FeedPostsV2Component } from './feed-posts-v2/feed-posts-v2.component';
 import { SideCardsComponent } from './side-cards/side-cards.component';
 import { UserCardComponent } from './user-card/user-card.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { UserCardComponent } from './user-card/user-card.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj": {}
+    "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj": {}
   },
   "projects": {
-    "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj": {
+    "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+        "projectUniqueName": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
         "projectName": "LWBack",
-        "projectPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+        "projectPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
         "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
+        "outputPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",

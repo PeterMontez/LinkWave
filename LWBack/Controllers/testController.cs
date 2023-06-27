@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+
 namespace ProjetoWeb.Controllers;
+
 [ApiController]
 [Route("test")]
 public class TestController : ControllerBase

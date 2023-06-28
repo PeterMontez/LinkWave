@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using LWBack.HashManager;
+using LWBack.Model;
 
-namespace ProjetoWeb.Controllers;
+namespace LWBack.Controllers;
 
 [ApiController]
 [Route("test")]
@@ -9,6 +11,9 @@ public class TestController : ControllerBase
     [HttpGet]
     public string Get()
     {
-        return "Server is running...";
+        string salt = SaltManager.GetSalt(16);
+
+        return Hasher.Hash(SaltManager.AddSalt("senha", salt)) + " " + salt;
+        //return "Server is running...";
     }
 }

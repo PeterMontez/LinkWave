@@ -4,7 +4,7 @@ namespace LWBack.Model;
 
 public interface IUserRepository
 {
-    Task Create(User user);
-    Task Update(User user);
+    void Create(User user);
+    void Update(User user);
     Task<User> FindByName(string userName);
 }

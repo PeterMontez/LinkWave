@@ -31,15 +31,6 @@ public class LoginController : ControllerBase
         newUser.BirthDate = data.BirthDate;
         newUser.Picture = data.Picture;
 
-        Console.WriteLine(newUser.BirthDate.GetType());
-        Console.WriteLine(data.BirthDate.GetType());
-        Console.WriteLine(newUser.Email);
-        Console.WriteLine(newUser);
-
-        Console.WriteLine("a");
-        // Console.WriteLine(context.GetType());
-        Console.WriteLine("a");
-
         repo.Create(newUser);
         
 

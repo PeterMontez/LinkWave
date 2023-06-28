@@ -11,12 +11,6 @@ public class UserRepository : IUserRepository
     public UserRepository(LinkWaveContext context)
         => this.context = context;
 
-    public async Task Create(User user)
-    {
-        await context.AddAsync(user);
-        await context.SaveChangesAsync();
-    }
-
     public async Task<User> FindByName(string userName)
     {
         var query =
@@ -30,9 +24,15 @@ public class UserRepository : IUserRepository
         return logged;
     }
 
-    public async Task Update(User user)
+    void IUserRepository.Create(User user)
+    {
+        context.Add(user);
+        context.SaveChanges();
+    }
+
+    void IUserRepository.Update(User user)
     {
         context.Update(user);
-        await context.SaveChangesAsync();
+        context.SaveChanges();
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QUzYOOqh925pckrgls3Dh7HgpRwz/chSjmmKz1qbb1lzZC3m+x1pa5kmLwqs2Z/X0IU1mwUN1B92GhKX8BW7pg==",
+  "dgSpecHash": "DsBH8b2sNBJ1aQj3RzUj+q0kQvfLonpzFQvIh58Ywgq3pSlO4e/7Bt2TdytDdWLzpbJ58n2WO1MlA+LTG9ZDsg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+  "projectFilePath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\disrct\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

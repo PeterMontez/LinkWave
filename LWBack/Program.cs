@@ -1,4 +1,7 @@
 using LWBack.Model;
+using LWBack.HashManager;
+using LWBack.Data;
+using LWBack.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

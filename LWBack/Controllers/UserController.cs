@@ -1,20 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
-using LWBack.Model;
-using LWBack.HashManager;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+
+using LWBack.Model;
+using LWBack.HashManager;
+using LWBack.Data;
+using LWBack.Services;
 
 namespace LWBack.Controllers;
 
 [ApiController]
 [Route("user")]
 [EnableCors("MainPolicy")]
-public class LoginController : ControllerBase
+public class UserController : ControllerBase
 {
 
     [HttpPost("signin")]
@@ -22,7 +24,6 @@ public class LoginController : ControllerBase
         [FromBody] SignInData data,
         [FromServices] IUserRepository repo)
     {
-
         User newUser = new User();
         newUser.Email = data.Email;
         newUser.Username = data.Username;
@@ -32,13 +33,16 @@ public class LoginController : ControllerBase
         newUser.Picture = data.Picture;
 
         repo.Create(newUser);
-        
 
         return Ok();
-
-
-        // await repo.Create(newUser);
-        // // result.Success = true;
-        // // return Ok(result);
     }
+
+    [HttpPost("login")]
+    public ActionResult Login(
+        [FromBody] LoginData data,
+        [FromServices] IUserRepository repo)
+    {
+        repo.Validate(data);
+    }
+
 }

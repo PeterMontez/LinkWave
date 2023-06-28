@@ -1,9 +1,11 @@
 using System.Linq;
 using System.Threading.Tasks;
-
-namespace LWBack.Model;
-
 using Microsoft.EntityFrameworkCore;
+using LWBack.Model;
+using LWBack.Data;
+
+namespace LWBack.Services;
+
 
 public class UserRepository : IUserRepository
 {
@@ -34,5 +36,10 @@ public class UserRepository : IUserRepository
     {
         context.Update(user);
         context.SaveChanges();
+    }
+
+    bool IUserRepository.Validate(LoginData loginData)
+    {
+        
     }
 }

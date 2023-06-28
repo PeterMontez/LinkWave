@@ -1,5 +1,7 @@
 using System;
 
+namespace LWBack.Data;
+
 public class SignInData
 {
     public string Email { get; set; }

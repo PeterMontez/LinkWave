@@ -14,6 +14,20 @@ public class ForumRepository : IForumRepository
     public ForumRepository(LinkWaveContext context)
         => this.context = context;
 
+    public NewForumCheckData CheckNewForum(Forum forum)
+    {
+        NewForumCheckData check = new NewForumCheckData();
+        if (FindByName(forum.Name) != null)
+        {
+            check.ReturnMsg = "A forum with this name already exists.";
+            check.Result = false;
+            return check;
+        }
+
+        check.Result = true;
+        return check;
+    }
+
     public void Create(Forum forum)
     {
         context.Add(forum);
@@ -22,7 +36,15 @@ public class ForumRepository : IForumRepository
 
     public Forum? FindByName(string forumName)
     {
-        throw new NotImplementedException();
+        var query =
+            from forum in context.Forums
+            where forum.Name == forumName
+            select forum;
+        
+        var forumList = query.ToList();
+        var result = forumList.FirstOrDefault();
+
+        return result;
     }
 
     public void Remove(Forum forum)

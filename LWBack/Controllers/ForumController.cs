@@ -27,11 +27,21 @@ public class ForumController : ControllerBase
         Forum newForum = new Forum();
         newForum.Name = data.Name;
         newForum.Description = data.Description;
-        //newForum.CreatedAt = DateTime.Now;
+        newForum.CreatedAt = DateTime.Now;
 
+        if (repo.CheckNewForum(newForum).Result)
+        {
+            repo.Create(newForum);
+            return Ok();
+        }
 
+        else
+        {
+            return BadRequest(repo.CheckNewForum(newForum).ReturnMsg);
+        }
 
-        return Ok();
     }
+
+    
 
 }

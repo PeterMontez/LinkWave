@@ -32,9 +32,17 @@ public class UserController : ControllerBase
         newUser.BirthDate = data.BirthDate;
         newUser.Picture = data.Picture;
 
-        repo.Create(newUser);
+        if (repo.CheckNewUser(newUser).Result)
+        {
+            repo.Create(newUser);
+            return Ok();
+        }
 
-        return Ok();
+        else
+        {
+            return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
+        }
+
     }
 
     [HttpPost("login")]
@@ -42,7 +50,15 @@ public class UserController : ControllerBase
         [FromBody] LoginData data,
         [FromServices] IUserRepository repo)
     {
-        repo.Validate(data);
+        return Ok(repo.Validate(data));
     }
+
+    // [HttpPost("subscribe")]
+    // public ActionResult Subscribe(
+    //     [FromBody] SubscribeData data,
+    //     [FromServices] IUserRepository repo)
+    // {
+    //     return Ok(repo.Validate(data));
+    // }
 
 }

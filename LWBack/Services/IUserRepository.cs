@@ -6,8 +6,10 @@ namespace LWBack.Services;
 
 public interface IUserRepository
 {
-    void Create(User user);
-    void Update(User user);
-    bool Validate(LoginData loginData);
-    Task<User> FindByName(string userName);
+    public User? FindByName(string userName);
+    public User? FindByEmail(string email);
+    public void Create(User user);
+    public void Update(User user);
+    public bool Validate(LoginData loginData);
+    public SignInCheckData CheckNewUser(User user);
 }

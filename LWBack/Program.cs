@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<LinkWaveContext>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IForumRepository, ForumRepository>();
 
 var env = builder.Environment;
 

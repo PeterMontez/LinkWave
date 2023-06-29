@@ -44,6 +44,7 @@ body {
 
 .signup-box .user-box {
     position: relative;
+      
 }
 
 .signup-box .user-box input {
@@ -69,8 +70,17 @@ body {
     transition: .5s;
 }
 
-.signup-box .user-box input:focus~label,
-.signup-box .user-box input:valid~label {
+.signup-box .user-box input[type="email"]~label {
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+
+.signup-box .user-box input:not([type=email]):focus~label,
+.signup-box .user-box input:not([type=email]):valid~label {
     top: -20px;
     left: 0;
     color: #64DCED;

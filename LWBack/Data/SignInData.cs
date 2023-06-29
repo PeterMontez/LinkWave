@@ -4,9 +4,9 @@ namespace LWBack.Data;
 
 public class SignInData
 {
-    public string Email { get; set; }
-    public string Username { get; set; }
-    public DateTime BirthDate { get; set; }
-    public string Password { get; set; }
-    public string Picture { get; set; }
+    public string username { get; set; }
+    public string email { get; set; }
+    public DateTime birthdate { get; set; }
+    public string password { get; set; }
+    public string picture { get; set; }
 }

@@ -20,17 +20,18 @@ public class UserController : ControllerBase
 {
 
     [HttpPost("signin")]
+    [EnableCors("MainPolicy")]
     public ActionResult Signin(
         [FromBody] SignInData data,
         [FromServices] IUserRepository repo)
     {
         User newUser = new User();
-        newUser.Email = data.Email;
-        newUser.Username = data.Username;
+        newUser.Email = data.email;
+        newUser.Username = data.username;
         newUser.Salt = SaltManager.GetSalt(16);
-        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.Password, newUser.Salt));
-        newUser.BirthDate = data.BirthDate;
-        newUser.Picture = data.Picture;
+        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
+        newUser.BirthDate = data.birthdate;
+        newUser.Picture = data.picture;
 
         if (repo.CheckNewUser(newUser).Result)
         {

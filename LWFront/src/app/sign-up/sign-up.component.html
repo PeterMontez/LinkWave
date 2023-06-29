@@ -12,23 +12,23 @@
         </div>
         <div style="height: 20px;"></div>
         <div class="user-box">
-            <input type="text" name="" required="">
+            <input type="text" name="username" required="" [(ngModel)]="name">
             <label>Username</label>
         </div>
         <div class="user-box">
-            <input type="text" name="" required="">
+            <input type="text" name="email" required="" [(ngModel)]="email">
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input name="" type="email" onfocus="(this.type='date')" onblur="if(!this.value)this.type='email'">
+            <input name="birthdate" type="email" onfocus="(this.type='date')" onblur="if(!this.value)this.type='email'" [(ngModel)]="birth">
             <label>Date of Birth</label>
         </div>
 
         <div class="user-box">
-            <input type="password" name="" required="">
+            <input type="password" name="password" required="" [(ngModel)]="password">
             <label>Password</label>
         </div>
-        <a href="#">
+        <a herf="javascript: void(0);" (click)="signUpClick();">
             <span></span>
             <span></span>
             <span></span>

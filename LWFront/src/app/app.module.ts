@@ -15,6 +15,7 @@ import { MainFeedComponent } from './main-feed/main-feed.component';
 import { FeedPostsV2Component } from './feed-posts-v2/feed-posts-v2.component';
 import { SideCardsComponent } from './side-cards/side-cards.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -37,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    FormsModule,
 
     HttpClientModule
   ],

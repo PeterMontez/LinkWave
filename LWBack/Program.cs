@@ -31,6 +31,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
 app.UseCors(); // Usando Cors
 
 // Configure the HTTP request pipeline.
@@ -41,12 +42,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 
 app.UseHttpsRedirection();
 

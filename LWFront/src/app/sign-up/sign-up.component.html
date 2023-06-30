@@ -20,7 +20,8 @@
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input name="birthdate" type="email" onfocus="(this.type='date')" onblur="if(!this.value)this.type='email'" [(ngModel)]="birth">
+            <input name="birthdate" type="email" onfocus="(this.type='date')" onblur="if(!this.value)this.type='email'"
+                [(ngModel)]="birth">
             <label>Date of Birth</label>
         </div>
 
@@ -28,6 +29,11 @@
             <input type="password" name="password" required="" [(ngModel)]="password">
             <label>Password</label>
         </div>
+
+        <div *ngIf="errormsg != ''" class="error">
+            <label style="color: #e66868;">{{errormsg}}</label>
+        </div>
+
         <a herf="javascript: void(0);" (click)="signUpClick();">
             <span></span>
             <span></span>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../services/user';
 import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { pipe, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
     selector: 'app-sign-up',
@@ -15,6 +16,8 @@ export class SignUpComponent {
     email: string = ""
     birth: string = ""
     password: string = ""
+
+    errormsg = ""
 
     router: Router;
 
@@ -30,7 +33,25 @@ export class SignUpComponent {
         password: this.password
     }
 
+    validEntry() {
+        if (this.name == '')
+            return false
+        if (this.email == '')
+            return false
+        if (this.birth == '')
+            return false
+        if (this.password == '')
+            return false
+
+        return true
+    }
+
     signUpClick() {
+
+        if (!this.validEntry()) {
+            this.errormsg = "All the fields must be filled"
+            return
+        }
 
         this.newUserData = {
             username: this.name,
@@ -40,11 +61,18 @@ export class SignUpComponent {
             password: this.password
         }
 
-        this.service.registerUser(this.newUserData).subscribe();
+        this.service.registerUser(this.newUserData).pipe(
+            catchError(error => {
+                const statusCode = error.error;
+                this.errormsg = statusCode
 
+                return throwError(() => new Error(error));
+            })
+        )
+        .subscribe(
 
-            
-        // console.log(this.newUserData)
+        );
+        
 
     }
 }

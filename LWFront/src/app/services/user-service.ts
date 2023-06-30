@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { pipe, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,6 @@ export class UserService {
   };
 
   registerUser(crrUser : User) {
-    return this.http.post('http://localhost:5145/user/signin/', crrUser, {observe: 'response'})
+    return this.http.post('http://localhost:5145/user/signin/', crrUser)
   }
 }

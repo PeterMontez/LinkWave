@@ -42,6 +42,13 @@ public class ForumController : ControllerBase
 
     }
 
-    
+    [HttpGet("home/{forumName}")]
+    public IEnumerable<Post>? GetPosts(
+        
+    )
+    {
+        // Where and linq stuff to get the posts
+        return null;
+    }
 
 }

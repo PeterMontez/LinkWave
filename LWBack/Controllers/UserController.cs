@@ -51,7 +51,10 @@ public class UserController : ControllerBase
         [FromBody] LoginData data,
         [FromServices] IUserRepository repo)
     {
-        return Ok(repo.Validate(data));
+        if (repo.Validate(data))
+            return Ok();
+        else
+            return BadRequest("Invalid Username or Password");
     }
 
     // [HttpPost("subscribe")]

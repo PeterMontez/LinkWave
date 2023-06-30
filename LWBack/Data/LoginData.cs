@@ -4,7 +4,7 @@ namespace LWBack.Data;
 
 public class LoginData
 {
-    public string User { get; set; }
-    public string Password { get; set; }
+    public string user { get; set; }
+    public string password { get; set; }
 
 }

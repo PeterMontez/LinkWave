@@ -20,6 +20,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainFeedComponent,
     FeedPostsV2Component,
     SideCardsComponent,
-    UserCardComponent
+    UserCardComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

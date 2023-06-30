@@ -3,14 +3,19 @@
   <h2>Login</h2>
   <form>
     <div class="user-box">
-      <input type="text" name="" required="">
+      <input type="text" name="user" required="" [(ngModel)]="user">
       <label>Username</label>
     </div>
     <div class="user-box">
-      <input type="password" name="" required="">
+      <input type="password" name="password" required="" [(ngModel)]="password">
       <label>Password</label>
     </div>
-    <a href="#">
+
+    <div *ngIf="errormsg != ''" class="error">
+      <label style="color: #e66868;">{{errormsg}}</label>
+    </div>
+
+    <a herf="javascript: void(0);" (click)="loginClick();">
       <span></span>
       <span></span>
       <span></span>

@@ -77,16 +77,16 @@ public class UserRepository : IUserRepository
 
     public bool Validate(LoginData loginData)
     {
-        User? user = FindByName(loginData.User);
+        User? user = FindByName(loginData.user);
 
-        if (user == null && loginData.User.Contains('@'))
+        if (user == null && loginData.user.Contains('@'))
         {
-            FindByEmail(loginData.User);
+            FindByEmail(loginData.user);
         }
         
         if (user != null)
         {
-            if (Hasher.Hash(SaltManager.AddSalt(loginData.Password, user.Salt)) == user.PasswordHash)
+            if (Hasher.Hash(SaltManager.AddSalt(loginData.password, user.Salt)) == user.PasswordHash)
             {
                 return true;
             }

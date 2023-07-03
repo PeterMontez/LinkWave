@@ -729,6 +729,15 @@
           }
         }
       },
+      "secJson-jwt/0.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Security-jwt.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Security-jwt.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -2561,6 +2570,18 @@
         "version.txt"
       ]
     },
+    "secJson-jwt/0.1.2": {
+      "sha512": "q10toCKSbHd4NBU79XerNvqD4JU2ukWmZOUAcJekPsmJQArtA+Rtgxylj+yyp6JaFh1gZ4fDPs5H1mbyKBH32w==",
+      "type": "package",
+      "path": "secjson-jwt/0.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net7.0/Security-jwt.dll",
+        "secjson-jwt.0.1.2.nupkg.sha512",
+        "secjson-jwt.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -4082,7 +4103,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Swashbuckle.AspNetCore >= 6.4.0",
-      "System.Data.SqlClient >= 4.8.5"
+      "System.Data.SqlClient >= 4.8.5",
+      "secJson-jwt >= 0.1.2"
     ]
   },
   "packageFolders": {
@@ -4091,11 +4113,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+      "projectUniqueName": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
       "projectName": "LWBack",
-      "projectPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+      "projectPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
       "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
+      "outputPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4145,6 +4167,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.5, )"
+          },
+          "secJson-jwt": {
+            "target": "Package",
+            "version": "[0.1.2, )"
           }
         },
         "imports": [

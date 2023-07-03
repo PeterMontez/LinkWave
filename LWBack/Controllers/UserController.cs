@@ -6,6 +6,8 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 
+using Security_jwt;
+
 using LWBack.Model;
 using LWBack.HashManager;
 using LWBack.Data;
@@ -49,10 +51,22 @@ public class UserController : ControllerBase
     [HttpPost("login")]
     public ActionResult Login(
         [FromBody] LoginData data,
-        [FromServices] IUserRepository repo)
+        [FromServices] IUserRepository repo,
+        [FromServices] IJwtService jwtService)
     {
+        
+        ReturnLoginData user = new ReturnLoginData
+        {
+            user = data.user
+        };
+
+        string jwt = jwtService.GetToken(user);
+
         if (repo.Validate(data))
-            return Ok();
+        {
+            
+        }
+        
         else
             return BadRequest("Invalid Username or Password");
     }

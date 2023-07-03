@@ -18,6 +18,7 @@ export class SignUpComponent {
     password: string = ""
 
     errormsg = ""
+    errorcode : number = 0
 
     router: Router;
 
@@ -53,6 +54,8 @@ export class SignUpComponent {
             return
         }
 
+        this.errormsg = '';
+
         this.newUserData = {
             username: this.name,
             email: this.email,
@@ -61,17 +64,27 @@ export class SignUpComponent {
             password: this.password
         }
 
-        this.service.registerUser(this.newUserData).pipe(
-            catchError(error => {
-                const statusCode = error.error;
-                this.errormsg = statusCode
+        // this.service.registerUser(this.newUserData).pipe(
+        //     catchError(error => {
+        //         const statusCode = error.error;
+        //         this.errormsg = statusCode
+        //         this.errorcode = error.status
+        //         console.log(this.errorcode)
 
-                return throwError(() => new Error(error));
-            })
+        //         return throwError(() => new Error(error));
+        //     })
+        // )
+        // .subscribe();        
+
+        this.service.registerUser(this.newUserData).subscribe(
+            (response) => {
+                this.router.navigateByUrl('/login')
+            },
+            (error) => {
+                console.log(error)
+                this.errormsg = error.error
+            }
         )
-        .subscribe(
-
-        );
         
     }
 }

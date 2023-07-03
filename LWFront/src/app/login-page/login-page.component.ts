@@ -13,7 +13,7 @@ import { catchError } from 'rxjs/operators';
 export class LoginPageComponent {
     user: string = ""
     password: string = ""
-    
+
     errormsg = '';
 
     router: Router;
@@ -22,9 +22,9 @@ export class LoginPageComponent {
         this.router = router;
     }
 
-    logindata : LoginData = {
-        user : this.user,
-        password : this.password
+    logindata: LoginData = {
+        user: this.user,
+        password: this.password
     }
 
     validEntry() {
@@ -33,38 +33,43 @@ export class LoginPageComponent {
         if (this.password == '')
             return false
 
-        
+
         return true
     }
 
-    loginClick() 
-    {
+    wait(ms : number) {
+        var start = new Date().getTime();
+        var end = start;
+        while (end < start + ms) {
+            end = new Date().getTime();
+        }
+    }
+
+    loginClick() {
         if (!this.validEntry()) {
-            this.errormsg = "All the fields must be filled"
             return
         }
+
+        this.errormsg = '';
 
         this.logindata = {
-            user : this.user,
-            password : this.password
+            user: this.user,
+            password: this.password
+
         }
 
-        this.service.loginUser(this.logindata).pipe(
-            catchError(error => {
-                const statusCode = error.error;
-                this.errormsg = statusCode
-                console.log("Nao deu boa")
+        this.service.loginUser(this.logindata).subscribe(
+            (response) => {
+                this.wait(1000)
+                this.router.navigateByUrl('/home')
+            },
+            (error) => {
+                console.log(error)
+                this.errormsg = error.error
+            }
 
-                return throwError(() => new Error(error));
-            })
+
         )
-        .subscribe();
-            
-        if (this.errormsg != '') {
-            return
-        }
-
-        console.log("deu boa");
 
     }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../interfaces/user';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LoginData } from './login-data';
+import { LoginData } from '../interfaces/login-data';
 
 @Injectable({
   providedIn: 'root'

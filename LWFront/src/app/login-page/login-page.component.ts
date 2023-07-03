@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginData } from '../services/login-data';
+import { LoginData } from '../interfaces/login-data';
 import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
 import { pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Jwt } from '../services/jwt'
+import { Jwt } from '../interfaces/jwt'
 
 
 

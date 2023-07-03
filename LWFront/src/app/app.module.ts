@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ForumFeedComponent } from './forum-feed/forum-feed.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FeedPostsV2Component,
     SideCardsComponent,
     UserCardComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ForumFeedComponent
   ],
   imports: [
     BrowserModule,

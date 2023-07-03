@@ -16,35 +16,45 @@ using LWBack.Services;
 namespace LWBack.Controllers;
 
 [ApiController]
-[Route("user")]
+[Route("posts")]
 [EnableCors("MainPolicy")]
-public class UserController : ControllerBase
+public class PostsController : ControllerBase
 {
 
-    [HttpPost("signin")]
+    [HttpPost("forum")]
     [EnableCors("MainPolicy")]
     public ActionResult Signin(
-        [FromBody] SignInData data,
-        [FromServices] IUserRepository repo)
+        [FromBody] Jwt token,
+        [FromServices] IUserRepository repo,
+        [FromServices] IJwtService jwtService)
     {
-        User newUser = new User();
-        newUser.Email = data.email;
-        newUser.Username = data.username;
-        newUser.Salt = SaltManager.GetSalt(16);
-        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
-        newUser.BirthDate = data.birthdate;
-        newUser.Picture = data.picture;
 
-        if (repo.CheckNewUser(newUser).Result)
-        {
-            repo.Create(newUser);
-            return Ok();
-        }
+        System.Console.WriteLine(token.value);
 
-        else
-        {
-            return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
-        }
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        Console.WriteLine(result.value);
+
+        // User newUser = new User();
+        // newUser.Email = data.email;
+        // newUser.Username = data.username;
+        // newUser.Salt = SaltManager.GetSalt(16);
+        // newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
+        // newUser.BirthDate = data.birthdate;
+        // newUser.Picture = data.picture;
+
+        // if (repo.CheckNewUser(newUser).Result)
+        // {
+        //     repo.Create(newUser);
+        //     return Ok();
+        // }
+
+        // else
+        // {
+        //     return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
+        // }
+
+        return Ok(result);
 
     }
 
@@ -61,8 +71,6 @@ public class UserController : ControllerBase
         };
 
         string jwt = jwtService.GetToken(user);
-
-        Console.WriteLine(jwt);
 
         if (repo.Validate(data))
         {

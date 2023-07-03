@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../services/user';
+import { User } from '../interfaces/user';
 import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
 import { pipe, throwError } from 'rxjs';
@@ -27,6 +27,7 @@ export class SignUpComponent {
     }
 
     newUserData: User = {
+        id : 0,
         username: this.name,
         email: this.email,
         birthdate: new Date(this.birth),
@@ -57,24 +58,13 @@ export class SignUpComponent {
         this.errormsg = '';
 
         this.newUserData = {
+            id : 0,
             username: this.name,
             email: this.email,
             birthdate: new Date(this.birth),
             picture: '',
             password: this.password
-        }
-
-        // this.service.registerUser(this.newUserData).pipe(
-        //     catchError(error => {
-        //         const statusCode = error.error;
-        //         this.errormsg = statusCode
-        //         this.errorcode = error.status
-        //         console.log(this.errorcode)
-
-        //         return throwError(() => new Error(error));
-        //     })
-        // )
-        // .subscribe();        
+        }  
 
         this.service.registerUser(this.newUserData).subscribe(
             (response) => {

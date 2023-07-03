@@ -47,6 +47,19 @@ public class ForumRepository : IForumRepository
         return result;
     }
 
+    public Forum? FindById(int forumId)
+    {
+        var query =
+            from forum in context.Forums
+            where forum.ForumId == forumId
+            select forum;
+        
+        var forumList = query.ToList();
+        var result = forumList.FirstOrDefault();
+
+        return result;
+    }
+
     public void Remove(Forum forum)
     {
         context.Remove(forum);

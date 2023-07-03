@@ -24,15 +24,25 @@ export class MainFeedComponent implements OnInit {
     }
 
     forum: Forum = {
-        id: 1,
+        id: 0,
         name: 'nome',
         description: '',
         createdat: new Date
     }
 
     loadPosts(): void {
-        this.service.ForumPosts(this.forum)
+        this.service.ForumPosts(this.forum).subscribe(
+            x => {
+                let list: Post[] = []
+                x.forEach(m => {
+                    list.push(m)
+                })
+                this.posts = list;
+            }
+        )
         
+
+
     }
 
 }

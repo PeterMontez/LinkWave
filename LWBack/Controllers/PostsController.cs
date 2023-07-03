@@ -21,19 +21,38 @@ namespace LWBack.Controllers;
 public class PostsController : ControllerBase
 {
 
-    [HttpPost("forum")]
+    [HttpPost("create")]
+    public ActionResult Create(
+        [FromBody] PostData data,
+        [FromServices] IPostsRepository repo)
+    {
+        Post newPost = new Post();
+        newPost.Title = data.title;
+        newPost.Content = data.content;
+        newPost.Picture = "";
+        newPost.UserId = data.userid;
+        newPost.ForumId = data.forumid;
+
+        return Ok();
+
+    }
+
+    [HttpPost("forum/{id}")]
     [EnableCors("MainPolicy")]
-    public ActionResult Signin(
+    public async Task<ActionResult<IEnumerable<Post>>> Signin(
         [FromBody] Jwt token,
-        [FromServices] IUserRepository repo,
+        [FromServices] int id,
+        [FromServices] IPostsRepository repo,
         [FromServices] IJwtService jwtService)
     {
 
-        System.Console.WriteLine(token.value);
-
         var result = jwtService.Validate<Jwt>(token.value);
 
-        Console.WriteLine(result.value);
+        var posts = repo.FindByForum(id);
+
+        // Forum forum = repo.FindById(id);
+
+
 
         // User newUser = new User();
         // newUser.Email = data.email;

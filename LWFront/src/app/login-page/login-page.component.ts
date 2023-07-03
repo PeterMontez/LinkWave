@@ -4,6 +4,9 @@ import { UserService } from '../services/user-service';
 import { Router } from '@angular/router';
 import { pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Jwt } from '../services/jwt'
+
+
 
 @Component({
     selector: 'app-login-page',
@@ -13,6 +16,7 @@ import { catchError } from 'rxjs/operators';
 export class LoginPageComponent {
     user: string = ""
     password: string = ""
+    token: any = ""
 
     errormsg = '';
 
@@ -59,15 +63,21 @@ export class LoginPageComponent {
         }
 
         this.service.loginUser(this.logindata).subscribe(
-            (response) => {
-                this.wait(1000)
+            (response : Jwt) => {
+                // this.wait(1000)
+                this.token = response.value
+                localStorage.setItem('jwt', this.token)
+
+                console.log(localStorage.getItem('jwt'));
+                
+
                 this.router.navigateByUrl('/home')
             },
             (error) => {
                 console.log(error)
                 this.errormsg = error.error
+                
             }
-
 
         )
 

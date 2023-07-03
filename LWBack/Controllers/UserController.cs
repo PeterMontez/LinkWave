@@ -49,7 +49,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult Login(
+    public async Task<ActionResult<Jwt>> Login(
         [FromBody] LoginData data,
         [FromServices] IUserRepository repo,
         [FromServices] IJwtService jwtService)
@@ -64,7 +64,7 @@ public class UserController : ControllerBase
 
         if (repo.Validate(data))
         {
-            
+            return Ok(new Jwt() { Value = jwt});
         }
         
         else

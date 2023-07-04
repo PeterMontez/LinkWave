@@ -44,12 +44,34 @@ public class PostsController : ControllerBase
     public ActionResult Signin(
         [FromBody] Jwt token,
         [FromServices] IPostsRepository repo,
+        [FromServices] IForumRepository forumrepo,
+        [FromServices] IUserRepository userrepo,
         [FromServices] IJwtService jwtService, string id)
     {
 
         var result = jwtService.Validate<Jwt>(token.value);
 
-        var posts = repo.FindByForum(int.Parse(id));
+        var fullposts = repo.FindByForum(int.Parse(id));
+
+        List<PostDisplayData> posts = new List<PostDisplayData>();
+
+        foreach (var post in fullposts)
+        {
+            PostDisplayData tempPost = new();
+
+            
+
+            tempPost.user = userrepo.FindById((int)post.UserId).Username;
+            tempPost.title = post.Title;
+            tempPost.content = post.Content;
+            tempPost.picture = post.Picture;
+            tempPost.likes = 0;
+            tempPost.dislikes = 0;
+            tempPost.forum = forumrepo.FindById((int)post.ForumId).Name;
+
+            posts.Add(tempPost);
+
+        }
 
         // Forum forum = repo.FindById(id);
 

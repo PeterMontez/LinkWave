@@ -6,8 +6,8 @@
                     <img class="rounded-circle" width="45" src="../../assets/img/default.jpg" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0">@UserName</div>
-                    <div class="h7 text-muted">User Name</div>
+                    <div class="h5 m-0">@{{user}}</div>
+                    <div class="h7 text-muted">{{forum}}</div>
                 </div>
             </div>
             <div>
@@ -28,19 +28,16 @@
 
     </div>
     <div class="card-body">
-        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Some time ago</div>
         <a class="card-link" href="#">
-            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing</h5>
+            <h5 class="card-title">{{title}}</h5>
         </a>
 
-        <div class="post-image">
+        <!-- <div class="post-image">
             <img src="../../assets/img/bgs/waves.jpg">
-        </div>
+        </div> -->
 
         <p class="card-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, assumenda. 
-            Pariatur corrupti quaerat unde consequuntur, voluptas mollitia maiores. Vero nulla modi sit, 
-            ut veniam tenetur error perferendis iure voluptatem magni?
+            {{content}}
         </p>
     </div>
     <div class="card-footer">

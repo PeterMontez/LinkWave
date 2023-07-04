@@ -44,7 +44,7 @@
             <div class="col-md-6 gedf-main">
 
                 <div *ngFor="let singlepost of posts">
-                    <app-feed-posts-v2></app-feed-posts-v2>
+                    <app-feed-posts-v2 [postdata]="singlepost"></app-feed-posts-v2>
                 </div>
 
                 <!-- INSERT POSTS HERE -->

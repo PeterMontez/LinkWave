@@ -1,0 +1,12 @@
+ID - Permission
+
+1 - See posts
+2 - Make post (title, content, image)
+3 - Like (+1).
+4 - Dislike (-1).
+5 - Remove posts.
+6 - Remove members.
+7 - Edit posts.
+8 - Promote members (change their position)
+9 - Create/Edit positions.
+10 - Delete forum.

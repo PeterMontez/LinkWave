@@ -8,6 +8,7 @@ public interface IUserRepository
 {
     public User? FindByName(string userName);
     public User? FindByEmail(string email);
+    public User? FindById(int id);
     public void Create(User user);
     public void Update(User user);
     public bool Validate(LoginData loginData);

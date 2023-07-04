@@ -73,12 +73,31 @@ public class UserController : ControllerBase
             return BadRequest("Invalid Username or Password");
     }
 
-    // [HttpPost("subscribe")]
-    // public ActionResult Subscribe(
-    //     [FromBody] SubscribeData data,
-    //     [FromServices] IUserRepository repo)
-    // {
-    //     return Ok(repo.Validate(data));
-    // }
+    [HttpPost("subscribe")]
+    [EnableCors("MainPolicy")]
+    public ActionResult Subscribe(
+        [FromBody] SignInData data,
+        [FromServices] IUserRepository repo)
+    {
+        User newUser = new User();
+        newUser.Email = data.email;
+        newUser.Username = data.username;
+        newUser.Salt = SaltManager.GetSalt(16);
+        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
+        newUser.BirthDate = data.birthdate;
+        newUser.Picture = data.picture;
+
+        if (repo.CheckNewUser(newUser).Result)
+        {
+            repo.Create(newUser);
+            return Ok();
+        }
+
+        else
+        {
+            return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
+        }
+
+    }
 
 }

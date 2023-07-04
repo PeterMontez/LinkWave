@@ -40,6 +40,19 @@ public class UserRepository : IUserRepository
         return logged;
     }
 
+    public User? FindById(int id)
+    {
+        var query =
+            from user in context.Users
+            where user.UserId == id
+            select user;
+        
+        var userList = query.ToList();
+        var logged = userList.FirstOrDefault();
+
+        return logged;
+    }
+
     public SignInCheckData CheckNewUser(User user)
     {
         SignInCheckData result = new SignInCheckData();

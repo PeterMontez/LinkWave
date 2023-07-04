@@ -3,6 +3,7 @@ import { Post } from '../interfaces/post'
 import { PostGetter } from '../services/post-getter';
 import { Router } from '@angular/router';
 import { Forum } from '../interfaces/forum';
+import { PostData } from '../interfaces/post-data';
 
 @Component({
     selector: 'app-main-feed',
@@ -11,7 +12,7 @@ import { Forum } from '../interfaces/forum';
 })
 export class MainFeedComponent implements OnInit {
     
-    posts : Post[] = []
+    posts : PostData[] = []
     
     router : Router;
     
@@ -34,7 +35,7 @@ export class MainFeedComponent implements OnInit {
     loadPosts(): void {
         this.service.ForumPosts(this.forum).subscribe(
             x => {
-                let list: Post[] = []
+                let list: PostData[] = []
                 x.forEach(element => {
                     list.push(element)
                 });

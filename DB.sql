@@ -64,6 +64,19 @@ create table Permissions(
 );
 go
 
+insert into Permissions VALUES
+	('See posts'),
+	('Make post (title, content, image)'),
+	('Like (+1).'),
+	('Dislike (-1).'),
+	('Remove posts.'),
+	('Remove members.'),
+	('Edit posts.'),
+	('Promote members (change their position)'),
+	('Create/Edit positions.'),
+	('Delete forum.');
+go
+
 create table PosPerm(
     PosPerm_id int identity primary key,
     Permission_id int,

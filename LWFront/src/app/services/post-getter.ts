@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { LoginData } from '../interfaces/login-data';
 import { Forum } from '../interfaces/forum';
 import { Post } from '../interfaces/post'
+import { Jwt } from '../interfaces/jwt'
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +17,14 @@ export class PostGetter {
 
     constructor(private http: HttpClient) { }
 
+    userjwt : Jwt = {
+        value: localStorage.getItem('jwt')
+    }
+
     ForumPosts(forum : Forum)
     {
-        return this.http.post<Post[]>(("http://localhost:5145/forum/feed") + forum.id, localStorage.getItem('jwt'))
+        
+        return this.http.post<Post[]>(("http://localhost:5145/posts/forum/") + forum.id, this.userjwt)
     }
 
     UserPosts()

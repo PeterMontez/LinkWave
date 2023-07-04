@@ -1,3 +1,3 @@
 export interface Jwt{
-    value? : string
+    value? : string | null
 }

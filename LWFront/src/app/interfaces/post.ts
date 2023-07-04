@@ -1,9 +1,11 @@
 export interface Post
 {
-    id : number;
-    title : string;
-    text : string;
-    picture : string;
-    userid: number;
-    forumid: number;
+    postId: number,
+    title: string,
+    content: string,
+    picture: string,
+    userId: number,
+    forumId: number,
+    forum: any,
+    user: any
 }

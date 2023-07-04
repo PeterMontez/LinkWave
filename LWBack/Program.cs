@@ -3,6 +3,7 @@ using LWBack.HashManager;
 using LWBack.Data;
 using LWBack.Services;
 using Security_jwt;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<LinkWaveContext>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IForumRepository, ForumRepository>();
+builder.Services.AddTransient<IPostsRepository, PostsRepository>();
 
 builder.Services.AddTransient<IJwtService>(p =>
     new JwTService(new PasswordProvider("verysafepassword"))

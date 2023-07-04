@@ -43,11 +43,15 @@
             </div>
             <div class="col-md-6 gedf-main">
 
+                <div *ngFor="let singlepost of posts">
+                    <app-feed-posts-v2></app-feed-posts-v2>
+                </div>
+
                 <!-- INSERT POSTS HERE -->
+                <!-- <app-feed-posts-v2></app-feed-posts-v2>
                 <app-feed-posts-v2></app-feed-posts-v2>
                 <app-feed-posts-v2></app-feed-posts-v2>
-                <app-feed-posts-v2></app-feed-posts-v2>
-                <app-feed-posts-v2></app-feed-posts-v2>
+                <app-feed-posts-v2></app-feed-posts-v2> -->
 
             </div>
             <div class="col-md-3">

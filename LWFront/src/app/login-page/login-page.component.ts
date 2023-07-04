@@ -70,7 +70,6 @@ export class LoginPageComponent {
 
                 console.log(localStorage.getItem('jwt'));
                 
-
                 this.router.navigateByUrl('/home')
             },
             (error) => {

@@ -33,26 +33,25 @@ public class PostsController : ControllerBase
         newPost.UserId = data.userid;
         newPost.ForumId = data.forumid;
 
+        repo.Create(newPost);
+
         return Ok();
 
     }
 
     [HttpPost("forum/{id}")]
     [EnableCors("MainPolicy")]
-    public async Task<ActionResult<IEnumerable<Post>>> Signin(
+    public ActionResult Signin(
         [FromBody] Jwt token,
-        [FromServices] int id,
         [FromServices] IPostsRepository repo,
-        [FromServices] IJwtService jwtService)
+        [FromServices] IJwtService jwtService, string id)
     {
 
         var result = jwtService.Validate<Jwt>(token.value);
 
-        var posts = repo.FindByForum(id);
+        var posts = repo.FindByForum(int.Parse(id));
 
         // Forum forum = repo.FindById(id);
-
-
 
         // User newUser = new User();
         // newUser.Email = data.email;
@@ -73,31 +72,8 @@ public class PostsController : ControllerBase
         //     return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
         // }
 
-        return Ok(result);
+        return Ok(posts);
 
-    }
-
-    [HttpPost("login")]
-    public async Task<ActionResult<Jwt>> Login(
-        [FromBody] LoginData data,
-        [FromServices] IUserRepository repo,
-        [FromServices] IJwtService jwtService)
-    {
-        
-        ReturnLoginData user = new ReturnLoginData
-        {
-            value = data.user
-        };
-
-        string jwt = jwtService.GetToken(user);
-
-        if (repo.Validate(data))
-        {
-            return Ok(new Jwt() { value = jwt});
-        }
-        
-        else
-            return BadRequest("Invalid Username or Password");
     }
 
     // [HttpPost("subscribe")]

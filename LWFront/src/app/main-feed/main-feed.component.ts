@@ -20,11 +20,12 @@ export class MainFeedComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
         this.loadPosts()
     }
 
     forum: Forum = {
-        id: 0,
+        id: 1,
         name: 'nome',
         description: '',
         createdat: new Date
@@ -34,14 +35,14 @@ export class MainFeedComponent implements OnInit {
         this.service.ForumPosts(this.forum).subscribe(
             x => {
                 let list: Post[] = []
-                x.forEach(m => {
-                    list.push(m)
-                })
-                this.posts = list;
+                x.forEach(element => {
+                    list.push(element)
+                });
+                this.posts = list
+                console.log(this.posts)
             }
-        )
-        
 
+        )        
 
     }
 

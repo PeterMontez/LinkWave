@@ -33,18 +33,18 @@ public class RatingRepository : IRatingRepository
         return result;
     }
 
-    public List<Rating> FindByPost(int postId)
-    {
-        var query =
-            from rating in context.Ratings
-            where rating.Post == 
-            select rating;
+    // public List<Rating> FindByPost(int postId)
+    // {
+    //     var query =
+    //         from rating in context.Ratings
+    //         // where rating.Post == 
+    //         select rating;
         
-        var ratingList = query.ToList();
-        var result = ratingList.FirstOrDefault();
+    //     var ratingList = query.ToList();
+    //     var result = ratingList.FirstOrDefault();
 
-        return result;
-    }
+    //     return result;
+    // }
 
     public void Remove(Rating rating)
     {

@@ -39,23 +39,25 @@ public partial class LinkWaveContext : DbContext
     {
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.ForumId).HasName("PK__Forums__E49CFD0BDDA1CE7D");
+            entity.HasKey(e => e.ForumId).HasName("PK__Forums__E49CFD0B461A168F");
 
             entity.Property(e => e.ForumId).HasColumnName("Forum_id");
             entity.Property(e => e.CreatedAt)
                 .HasColumnType("date")
                 .HasColumnName("Created_at");
             entity.Property(e => e.Description)
+                .IsRequired()
                 .HasMaxLength(150)
                 .IsUnicode(false);
             entity.Property(e => e.Name)
+                .IsRequired()
                 .HasMaxLength(40)
                 .IsUnicode(false);
         });
 
         modelBuilder.Entity<ForumUser>(entity =>
         {
-            entity.HasKey(e => e.AssociationId).HasName("PK__ForumUse__12E511F9A8BB01D7");
+            entity.HasKey(e => e.AssociationId).HasName("PK__ForumUse__12E511F95E24BC04");
 
             entity.ToTable("ForumUser");
 
@@ -74,7 +76,7 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<Permission>(entity =>
         {
-            entity.HasKey(e => e.PermissionId).HasName("PK__Permissi__89B4589D58FD9789");
+            entity.HasKey(e => e.PermissionId).HasName("PK__Permissi__89B4589DBC519370");
 
             entity.Property(e => e.PermissionId).HasColumnName("Permission_id");
             entity.Property(e => e.Name)
@@ -84,7 +86,7 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<PosPerm>(entity =>
         {
-            entity.HasKey(e => e.PosPermId).HasName("PK__PosPerm__59E1C83DA63C86A5");
+            entity.HasKey(e => e.PosPermId).HasName("PK__PosPerm__59E1C83D734B8135");
 
             entity.ToTable("PosPerm");
 
@@ -103,7 +105,7 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<Position>(entity =>
         {
-            entity.HasKey(e => e.PositionId).HasName("PK__Position__3C3D9A7EF291E393");
+            entity.HasKey(e => e.PositionId).HasName("PK__Position__3C3D9A7E842B87C0");
 
             entity.Property(e => e.PositionId).HasColumnName("Position_id");
             entity.Property(e => e.ForumId).HasColumnName("Forum_id");
@@ -118,7 +120,7 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.PostId).HasName("PK__Posts__587ADB65ED481609");
+            entity.HasKey(e => e.PostId).HasName("PK__Posts__587ADB65001EB4A9");
 
             entity.Property(e => e.PostId).HasColumnName("Post_id");
             entity.Property(e => e.Content)
@@ -144,16 +146,16 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<Rating>(entity =>
         {
-            entity.HasKey(e => e.RatingId).HasName("PK__Ratings__BE49CCDDE269F939");
+            entity.HasKey(e => e.RatingId).HasName("PK__Ratings__BE49CCDD1605418D");
 
             entity.Property(e => e.RatingId).HasColumnName("Rating_id");
-            entity.Property(e => e.ForumId).HasColumnName("Forum_id");
+            entity.Property(e => e.PostId).HasColumnName("Post_id");
             entity.Property(e => e.Rating1).HasColumnName("Rating");
             entity.Property(e => e.UserId).HasColumnName("User_id");
 
-            entity.HasOne(d => d.Forum).WithMany(p => p.Ratings)
-                .HasForeignKey(d => d.ForumId)
-                .HasConstraintName("FK__Ratings__Forum_i__4CA06362");
+            entity.HasOne(d => d.Post).WithMany(p => p.Ratings)
+                .HasForeignKey(d => d.PostId)
+                .HasConstraintName("FK__Ratings__Post_id__4CA06362");
 
             entity.HasOne(d => d.User).WithMany(p => p.Ratings)
                 .HasForeignKey(d => d.UserId)
@@ -162,25 +164,30 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__206A9DF895704C9D");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__206A9DF8EE343C11");
 
             entity.Property(e => e.UserId).HasColumnName("User_id");
             entity.Property(e => e.BirthDate).HasColumnType("date");
             entity.Property(e => e.Email)
+                .IsRequired()
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.PasswordHash)
+                .IsRequired()
                 .HasMaxLength(64)
                 .IsUnicode(false)
                 .IsFixedLength();
             entity.Property(e => e.Picture)
+                .IsRequired()
                 .HasMaxLength(200)
                 .IsUnicode(false);
             entity.Property(e => e.Salt)
+                .IsRequired()
                 .HasMaxLength(16)
                 .IsUnicode(false)
                 .IsFixedLength();
             entity.Property(e => e.Username)
+                .IsRequired()
                 .HasMaxLength(30)
                 .IsUnicode(false);
         });

@@ -11,7 +11,7 @@ public partial class PosPerm
 
     public int? PositionId { get; set; }
 
-    public virtual Permission? Permission { get; set; }
+    public virtual Permission Permission { get; set; }
 
-    public virtual Position? Position { get; set; }
+    public virtual Position Position { get; set; }
 }

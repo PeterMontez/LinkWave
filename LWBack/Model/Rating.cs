@@ -11,9 +11,9 @@ public partial class Rating
 
     public int? UserId { get; set; }
 
-    public int? ForumId { get; set; }
+    public int? PostId { get; set; }
 
-    public virtual Forum? Forum { get; set; }
+    public virtual Post Post { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual User User { get; set; }
 }

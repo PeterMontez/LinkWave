@@ -46,6 +46,15 @@
           }
         }
       },
+      "dotenv.net/3.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1338,6 +1347,20 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "dotenv.net/3.1.2": {
+      "sha512": "lFm4hGX9JkNtAF36Uz4C3WT7MC6Ys802k0cPvlln8ydmH67GQjnToH+w645tQm1czAjW/V6tPE088lD77sYFGA==",
+      "type": "package",
+      "path": "dotenv.net/3.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotenv.net.3.1.2.nupkg.sha512",
+        "dotenv.net.nuspec",
+        "lib/netstandard1.6/dotenv.net.dll",
+        "lib/netstandard2.0/dotenv.net.dll",
+        "lib/netstandard2.1/dotenv.net.dll"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -4104,6 +4127,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.8",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.Data.SqlClient >= 4.8.5",
+      "dotenv.net >= 3.1.2",
       "secJson-jwt >= 0.1.2"
     ]
   },
@@ -4113,11 +4137,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+      "projectUniqueName": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
       "projectName": "LWBack",
-      "projectPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
+      "projectPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\LWBack.csproj",
       "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
+      "outputPath": "C:\\Users\\disrct\\Desktop\\LinkWave\\LWBack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4167,6 +4191,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.5, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "[3.1.2, )"
           },
           "secJson-jwt": {
             "target": "Package",

@@ -4,10 +4,13 @@ using LWBack.Data;
 using LWBack.Services;
 using Security_jwt;
 using System;
+using dotenv.net;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+DotEnv.AutoConfig();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -18,9 +21,11 @@ builder.Services.AddScoped<LinkWaveContext>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IForumRepository, ForumRepository>();
 builder.Services.AddTransient<IPostsRepository, PostsRepository>();
+builder.Services.AddTransient<IPositionRepository, PositionRepository>();
+builder.Services.AddTransient<IPosPermRepository, PosPermRepository>();
 
 builder.Services.AddTransient<IJwtService>(p =>
-    new JwTService(new PasswordProvider("verysafepassword"))
+    new JwTService(new PasswordProvider(Environment.GetEnvironmentVariable("PRIVATE_KEY")))
 );
 
 var env = builder.Environment;

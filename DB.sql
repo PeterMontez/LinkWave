@@ -89,7 +89,7 @@ create table Ratings(
     Rating_id int identity primary key,
     Rating bit,
     User_id int,
-    Forum_id int,
+    Post_id int,
     foreign key (User_id) references Users(User_id),
-    foreign key (Forum_id) references Forums(Forum_id)
+    foreign key (Post_id) references Posts(Post_id)
 );

@@ -45,7 +45,6 @@ public class UserController : ControllerBase
         {
             return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
         }
-
     }
 
     [HttpPost("login")]
@@ -97,7 +96,32 @@ public class UserController : ControllerBase
         {
             return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
         }
+    }
 
+    [HttpPost("like")]
+    [EnableCors("MainPolicy")]
+    public ActionResult like(
+        [FromBody] SignInData data,
+        [FromServices] IUserRepository repo)
+    {
+        User newUser = new User();
+        newUser.Email = data.email;
+        newUser.Username = data.username;
+        newUser.Salt = SaltManager.GetSalt(16);
+        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
+        newUser.BirthDate = data.birthdate;
+        newUser.Picture = data.picture;
+
+        if (repo.CheckNewUser(newUser).Result)
+        {
+            repo.Create(newUser);
+            return Ok();
+        }
+
+        else
+        {
+            return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
+        }
     }
 
 }

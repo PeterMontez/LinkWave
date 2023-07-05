@@ -1,0 +1,50 @@
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="card gedf-card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mr-2">
+                    <img class="rounded-circle" width="45" src="../../assets/img/default.jpg" alt="">
+                </div>
+                <div class="ml-2">
+                    <div class="h5 m-0">@LoggedUser</div>
+                    <div class="h7 text-muted">Current Forum</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+
+        <button class="custom-btn btn-3" *ngIf="!postIntent" (click)="userClick()">New Post</button>
+
+        <div *ngIf="postIntent">
+            <form> 
+                <div class="user-box">
+                    <input type="text" name="user" required="" [(ngModel)]="title">
+                    <label>Title</label>
+                </div>
+                <div class="user-box">
+                    <textarea name="content" required="" rows="6" maxlength="500" [(ngModel)]="content"></textarea>
+                    <label>Content</label>
+                </div>
+                
+                <div *ngIf="errormsg != ''" class="error">
+                    <label style="color: #e66868;">erro</label>
+                </div>
+            </form>
+        </div>
+
+        <!-- <div class="post-image">
+            <img src="../../assets/img/bgs/waves.jpg">
+        </div> -->
+        
+    </div>
+    <div class="card-footer">
+        <a *ngIf="postIntent" herf="javascript: void(0);" (click)="Post()" class="actionButtons"><i class="fa fa-check"></i> Post</a>
+        <a *ngIf="postIntent" herf="javascript: void(0);" (click)="userClick()" class="actionButtons"><i class="fa fa-times"></i> Cancel</a>
+    </div>
+
+
+</div>

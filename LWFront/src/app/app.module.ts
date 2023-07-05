@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ForumFeedComponent } from './forum-feed/forum-feed.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ForumFeedComponent } from './forum-feed/forum-feed.component';
     SideCardsComponent,
     UserCardComponent,
     LandingPageComponent,
-    ForumFeedComponent
+    ForumFeedComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

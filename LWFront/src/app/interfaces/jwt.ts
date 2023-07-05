@@ -1,3 +1,4 @@
 export interface Jwt{
-    value? : string | null
+    value? : string | null,
+    id? : number
 }

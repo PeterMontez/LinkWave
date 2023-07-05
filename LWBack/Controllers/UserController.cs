@@ -53,21 +53,38 @@ public class UserController : ControllerBase
         [FromServices] IUserRepository repo,
         [FromServices] IJwtService jwtService)
     {
-        
-        ReturnLoginData user = new ReturnLoginData
+
+        string tempUserId = "0";
+
+        if (repo.FindByName(data.user) == null)
         {
-            value = data.user
-        };
-
-        string jwt = jwtService.GetToken(user);
-
-        Console.WriteLine(jwt);
+            if (repo.FindByEmail(data.user) != null)
+            {
+                tempUserId = repo.FindByEmail(data.user).UserId.ToString();
+            }
+        }
+        else
+        {
+            tempUserId = repo.FindByName(data.user).UserId.ToString();
+        }
 
         if (repo.Validate(data))
         {
-            return Ok(new Jwt() { value = jwt});
+            ReturnLoginData user = new()
+            {
+                value = tempUserId ?? "0"
+            };
+
+            string jwt = jwtService.GetToken(user);
+
+            Jwt fullResponse = new()
+            {
+                value = jwt,
+                id = int.Parse(user.value)
+            };
+            return Ok(fullResponse);
         }
-        
+
         else
             return BadRequest("Invalid Username or Password");
     }

@@ -17,9 +17,10 @@
     </div>
     <div class="spacer"></div>
     <div style="width: 10px;"></div>
-    <button routerLink="/login" type="button" class="Login"><p>Log In</p></button>
+    <button *ngIf="!check()" routerLink="/login" type="button" class="Login"><p>Log In</p></button>
+    <button *ngIf="check()" routerLink="" type="button" (click)="logout()" class="Login"><p>Log Out</p></button>
     <div style="width: 10px;"></div>
-    <button routerLink="/register" type="button" class="SignUp"><p>Sign Up</p></button>
+    <button *ngIf="!check()" routerLink="/register" type="button" class="SignUp"><p>Sign Up</p></button>
     <div style="width: 25px;"></div>
     <div class="user">
         <img src="../../assets/img/user.png" />

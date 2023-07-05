@@ -23,6 +23,8 @@ builder.Services.AddTransient<IForumRepository, ForumRepository>();
 builder.Services.AddTransient<IPostsRepository, PostsRepository>();
 builder.Services.AddTransient<IPositionRepository, PositionRepository>();
 builder.Services.AddTransient<IPosPermRepository, PosPermRepository>();
+builder.Services.AddTransient<IForumUserRepository, ForumUserRepository>();
+builder.Services.AddTransient<IRatingRepository, RatingRepository>();
 
 builder.Services.AddTransient<IJwtService>(p =>
     new JwTService(new PasswordProvider(Environment.GetEnvironmentVariable("PRIVATE_KEY")))

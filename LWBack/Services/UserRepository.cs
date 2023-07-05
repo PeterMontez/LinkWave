@@ -94,7 +94,7 @@ public class UserRepository : IUserRepository
 
         if (user == null && loginData.user.Contains('@'))
         {
-            FindByEmail(loginData.user);
+            user = FindByEmail(loginData.user);
         }
         
         if (user != null)

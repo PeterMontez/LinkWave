@@ -11,17 +11,17 @@ import { PostData } from '../interfaces/post-data';
     styleUrls: ['./main-feed.component.css']
 })
 export class MainFeedComponent implements OnInit {
-    
-    posts : PostData[] = []
-    
-    router : Router;
-    
+
+    posts: PostData[] = []
+
+    router: Router;
+
     constructor(private service: PostGetter, router: Router) {
         this.router = router;
     }
 
     ngOnInit(): void {
-        
+
         this.loadPosts()
     }
 
@@ -33,7 +33,18 @@ export class MainFeedComponent implements OnInit {
     }
 
     loadPosts(): void {
-        this.service.ForumPosts(this.forum).subscribe(
+        // this.service.ForumPosts(this.forum).subscribe(
+        //     x => {
+        //         let list: PostData[] = []
+        //         x.forEach(element => {
+        //             list.push(element)
+        //         });
+        //         this.posts = list
+        //         console.log(this.posts)
+        //     }
+        // )        
+
+        this.service.MainPosts().subscribe(
             x => {
                 let list: PostData[] = []
                 x.forEach(element => {
@@ -42,8 +53,7 @@ export class MainFeedComponent implements OnInit {
                 this.posts = list
                 console.log(this.posts)
             }
-
-        )        
+        )
 
     }
 

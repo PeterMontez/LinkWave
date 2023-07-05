@@ -11,5 +11,5 @@ public class LoginData
 
 public class ReturnLoginData
 {
-    public string value { get; set; }
+    public string? value { get; set; }
 }

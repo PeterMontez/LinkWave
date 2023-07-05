@@ -19,23 +19,39 @@ export class PostGetter {
     constructor(private http: HttpClient) { }
 
     userjwt : Jwt = {
-        value: localStorage.getItem('jwt')
+        value: localStorage.getItem('jwt'),
+        id: Number(localStorage.getItem('userId'))
     }
+    
 
     ForumPosts(forum : Forum)
     {
+        this.userjwt = {
+            value: localStorage.getItem('jwt'),
+            id: Number(localStorage.getItem('userId'))
+        }
         
         return this.http.post<PostData[]>(("http://localhost:5145/posts/forum/") + forum.id, this.userjwt)
     }
 
     UserPosts()
     {
-        return this.http.post<Post[]>(("http://localhost:5145/user/feed"), localStorage.getItem('jwt'))
+        this.userjwt = {
+            value: localStorage.getItem('jwt'),
+            id: Number(localStorage.getItem('userId'))
+        }
+
+        return this.http.post<PostData[]>(("http://localhost:5145/posts/user/"), this.userjwt)
     }
 
     MainPosts()
-    {
-        return this.http.post<Post[]>(("http://localhost:5145/home/feed"), localStorage.getItem('jwt'))
+    {  
+        this.userjwt = {
+            value: localStorage.getItem('jwt'),
+            id: Number(localStorage.getItem('userId'))
+        }
+        
+        return this.http.post<PostData[]>(("http://localhost:5145/posts/home/"), this.userjwt)
     }
 
 }

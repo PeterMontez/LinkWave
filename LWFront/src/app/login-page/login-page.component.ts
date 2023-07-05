@@ -17,6 +17,7 @@ export class LoginPageComponent {
     user: string = ""
     password: string = ""
     token: any = ""
+    id : any
 
     errormsg = '';
 
@@ -66,9 +67,12 @@ export class LoginPageComponent {
             (response : Jwt) => {
                 // this.wait(1000)
                 this.token = response.value
+                this.id = response.id
                 localStorage.setItem('jwt', this.token)
+                localStorage.setItem('userId', this.id)
 
                 console.log(localStorage.getItem('jwt'));
+                console.log(localStorage.getItem('userId'));
                 
                 this.router.navigateByUrl('/home')
             },

@@ -59,8 +59,6 @@ public class PostsController : ControllerBase
         {
             PostDisplayData tempPost = new();
 
-            
-
             tempPost.user = userrepo.FindById((int)post.UserId).Username;
             tempPost.title = post.Title;
             tempPost.content = post.Content;
@@ -73,37 +71,73 @@ public class PostsController : ControllerBase
 
         }
 
-        // Forum forum = repo.FindById(id);
-
-        // User newUser = new User();
-        // newUser.Email = data.email;
-        // newUser.Username = data.username;
-        // newUser.Salt = SaltManager.GetSalt(16);
-        // newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
-        // newUser.BirthDate = data.birthdate;
-        // newUser.Picture = data.picture;
-
-        // if (repo.CheckNewUser(newUser).Result)
-        // {
-        //     repo.Create(newUser);
-        //     return Ok();
-        // }
-
-        // else
-        // {
-        //     return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
-        // }
-
         return Ok(posts);
 
     }
 
-    // [HttpPost("subscribe")]
-    // public ActionResult Subscribe(
-    //     [FromBody] SubscribeData data,
-    //     [FromServices] IUserRepository repo)
-    // {
-    //     return Ok(repo.Validate(data));
-    // }
+    [HttpPost("home")]
+    [EnableCors("MainPolicy")]
+    public ActionResult Home(
+        [FromBody] Jwt token,
+        [FromServices] IPostsRepository repo,
+        [FromServices] IForumRepository forumrepo,
+        [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IUserRepository userrepo,
+        [FromServices] IJwtService jwtService)
+    {
+
+        System.Console.WriteLine(token.id);
+        System.Console.WriteLine(token.value);
+        System.Console.WriteLine("AAA");
+
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        if (result.value == null || result.value == "")
+        {
+            //TODO - Return not authorized
+            return BadRequest();
+        }
+
+        List<PostDisplayData> AllPosts = new();
+
+        foreach (var forum in forumuserrepo.ForumsByUserId(int.Parse(result.value)))
+        {
+            var fullposts = repo.FindByForum(forum.ForumId);
+
+            List<PostDisplayData> tempPosts = new List<PostDisplayData>();
+
+            foreach (var post in fullposts)
+            {
+                PostDisplayData tempPost = new();
+
+                tempPost.user = userrepo.FindById((int)post.UserId).Username;
+                tempPost.title = post.Title;
+                tempPost.content = post.Content;
+                tempPost.picture = post.Picture;
+                tempPost.likes = 0;
+                tempPost.dislikes = 0;
+                tempPost.forum = forumrepo.FindById((int)post.ForumId).Name;
+
+                tempPosts.Add(tempPost);
+
+            }
+
+            AllPosts.AddRange(tempPosts);
+
+        }
+
+        Random _rand = new();
+
+        for (int i = AllPosts.Count - 1; i > 0; i--)
+        {
+            var k = _rand.Next(i + 1);
+            var value = AllPosts[k];
+            AllPosts[k] = AllPosts[i];
+            AllPosts[i] = value;
+        }
+
+        return Ok(AllPosts);
+
+    }
 
 }

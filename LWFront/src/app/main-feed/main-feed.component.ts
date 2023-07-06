@@ -16,7 +16,7 @@ export class MainFeedComponent implements OnInit {
 
     router: Router;
 
-    crrForum : string = '0'
+    crrForum : string | null = localStorage.getItem('forumId')
 
     crrForumNumber : number = Number(this.crrForum)
 
@@ -25,7 +25,8 @@ export class MainFeedComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.crrForum = localStorage.getItem('forumId')
+        this.crrForumNumber = Number(this.crrForum)
         this.loadPosts()
     }
 

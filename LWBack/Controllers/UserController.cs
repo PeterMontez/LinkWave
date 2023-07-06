@@ -160,45 +160,19 @@ public class UserController : ControllerBase
             return BadRequest();
         }
 
-        List<PostDisplayData> AllPosts = new();
+        List<ForumDisplayData> forums = new();
 
         foreach (var forum in forumuserrepo.ForumsByUserId(int.Parse(result.value)))
         {
-            var fullposts = repo.FindByForum(forum.ForumId);
+            ForumDisplayData displayData = new();
 
-            List<PostDisplayData> tempPosts = new List<PostDisplayData>();
+            displayData.name = forum.Name;
+            displayData.id = forum.ForumId;
 
-            foreach (var post in fullposts)
-            {
-                PostDisplayData tempPost = new();
+            forums.Add(displayData);
+        } 
 
-                tempPost.user = userrepo.FindById((int)post.UserId).Username;
-                tempPost.title = post.Title;
-                tempPost.content = post.Content;
-                tempPost.picture = post.Picture;
-                tempPost.likes = 0;
-                tempPost.dislikes = 0;
-                tempPost.forum = forumrepo.FindById((int)post.ForumId).Name;
-
-                tempPosts.Add(tempPost);
-
-            }
-
-            AllPosts.AddRange(tempPosts);
-
-        }
-
-        Random _rand = new();
-
-        for (int i = AllPosts.Count - 1; i > 0; i--)
-        {
-            var k = _rand.Next(i + 1);
-            var value = AllPosts[k];
-            AllPosts[k] = AllPosts[i];
-            AllPosts[i] = value;
-        }
-
-        return Ok(AllPosts);
+        return Ok(forums);
 
     }
 }

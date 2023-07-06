@@ -9,6 +9,7 @@ import { Forum } from '../interfaces/forum';
 import { PostData } from '../interfaces/post-data'
 import { Post } from '../interfaces/post'
 import { Jwt } from '../interfaces/jwt'
+import { ForumCardData } from '../interfaces/forum-card-data';
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +31,7 @@ export class ForumService {
             id: Number(localStorage.getItem('userId'))
         }
         
-        return this.http.post<Forum[]>(("http://localhost:5145/user/forums"), this.userjwt)
+        return this.http.post<ForumCardData[]>(("http://localhost:5145/user/forums"), this.userjwt)
     }
 
 }

@@ -5,4 +5,5 @@ export interface NewPost
     picture: string,
     userId: number,
     forumId: number,
+    jwtvalue: string | null
 }

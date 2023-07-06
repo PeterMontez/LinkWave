@@ -28,8 +28,6 @@ public class ForumUserRepository : IForumUserRepository
             select forumUser;
         
         var forumUserList = query.ToList();
-
-        System.Console.WriteLine(forumUserList.Count());
         
         List<Forum> result = new();
 

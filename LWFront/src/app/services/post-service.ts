@@ -15,7 +15,7 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser(newpost : NewPost) {
-    return this.http.post('http://localhost:5145/posts/create/', newpost)
+  post(newpost : NewPost) {
+    return this.http.post<Boolean>('http://localhost:5145/posts/create/', newpost)
   };
 }

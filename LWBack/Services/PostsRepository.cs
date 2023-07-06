@@ -20,6 +20,18 @@ public class PostsRepository : IPostsRepository
         context.SaveChanges();
     }
 
+    // public List<Post>? FindByForum(int forumId, int page = 0, int itemPerpage = 10)
+    // {
+    //     var query =
+    //         from post in context.Posts
+    //         where post.ForumId == forumId
+    //         select post;
+        
+    //     var postList = query.Skip(page * itemPerpage).Take(itemPerpage);
+
+    //     return postList.ToList();
+    // }
+
     public List<Post>? FindByForum(int forumId)
     {
         var query =

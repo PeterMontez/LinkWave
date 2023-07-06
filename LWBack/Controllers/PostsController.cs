@@ -35,7 +35,7 @@ public class PostsController : ControllerBase
 
         repo.Create(newPost);
 
-        return Ok();
+        return Ok(true);
 
     }
 
@@ -70,6 +70,8 @@ public class PostsController : ControllerBase
             posts.Add(tempPost);
 
         }
+
+        posts.Reverse();
 
         return Ok(posts);
 
@@ -131,6 +133,8 @@ public class PostsController : ControllerBase
             AllPosts[k] = AllPosts[i];
             AllPosts[i] = value;
         }
+
+        AllPosts.Reverse();
 
         return Ok(AllPosts);
 

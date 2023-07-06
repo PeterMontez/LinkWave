@@ -74,11 +74,13 @@ export class LoginPageComponent {
 
                 console.log(localStorage.getItem('jwt'));
                 
-                
+                localStorage.setItem('username', this.user)
+
                 this.router.navigateByUrl('/home')
             },
             (error) => {
                 console.log(error)
+                localStorage.clear
                 this.errormsg = error.error
                 
             }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForumCardData } from '../interfaces/forum-card-data';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ForumService } from '../services/forum-service';
 import { Forum } from '../interfaces/forum';
 
@@ -11,7 +11,7 @@ import { Forum } from '../interfaces/forum';
 })
 export class SideCardForumsComponent implements OnInit {
 
-    forumlist: Forum[] = []
+    forumlist: ForumCardData[] = []
 
     router: Router;
 
@@ -34,7 +34,7 @@ export class SideCardForumsComponent implements OnInit {
     {
         this.service.GetForums().subscribe(
             x => {
-                let list: Forum[] = []
+                let list: ForumCardData[] = []
                 x.forEach(element => {
                     list.push(element)
                 });
@@ -43,6 +43,13 @@ export class SideCardForumsComponent implements OnInit {
                 
             }
         )
+    }
+
+    forumClick(id : number, name : string)
+    {
+        window.location.reload()
+        localStorage.setItem('forumname', name)
+        localStorage.setItem('forumId', id.toString())
     }
 
 }

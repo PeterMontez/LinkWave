@@ -4,6 +4,9 @@ import { PostGetter } from '../services/post-getter';
 import { Router } from '@angular/router';
 import { Forum } from '../interfaces/forum';
 import { PostData } from '../interfaces/post-data';
+import { ForumCardData } from '../interfaces/forum-card-data';
+import { ForumInfo } from '../interfaces/forum-info';
+import { ForumService } from '../services/forum-service';
 
 @Component({
     selector: 'app-main-feed',
@@ -17,8 +20,17 @@ export class MainFeedComponent implements OnInit {
     router: Router;
 
     crrForum : string | null = localStorage.getItem('forumId')
-
     crrForumNumber : number = Number(this.crrForum)
+
+    userinfo : any;
+
+    foruminfo : ForumInfo = {
+        name: '',
+        createdat: '',
+        description: '',
+        position: '',
+        followers: 0
+    };
 
     constructor(private service: PostGetter, router: Router) {
         this.router = router;
@@ -27,6 +39,7 @@ export class MainFeedComponent implements OnInit {
     ngOnInit(): void {
         this.crrForum = localStorage.getItem('forumId')
         this.crrForumNumber = Number(this.crrForum)
+        this.loadCard()
         this.loadPosts()
     }
 
@@ -35,6 +48,23 @@ export class MainFeedComponent implements OnInit {
         name: 'nome',
         description: '',
         createdat: new Date
+    }
+
+    loadCard() : void
+    {
+        if (Number(localStorage.getItem('forumId')) > 0) {
+            this.service.GetForumInfo().subscribe(
+                x => {
+                    this.foruminfo = {
+                        name: x.name,
+                        createdat: x.createdat,
+                        description: x.description,
+                        position: x.position,
+                        followers: x.followers
+                    };
+                }
+            )
+        }
     }
 
     loadPosts(): void {

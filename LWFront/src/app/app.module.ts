@@ -24,6 +24,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ForumFeedComponent } from './forum-feed/forum-feed.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SideCardForumsComponent } from './side-card-forums/side-card-forums.component';
+import { ForumCardComponent } from './forum-card/forum-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SideCardForumsComponent } from './side-card-forums/side-card-forums.com
     LandingPageComponent,
     ForumFeedComponent,
     NewPostComponent,
-    SideCardForumsComponent
+    SideCardForumsComponent,
+    ForumCardComponent
   ],
   imports: [
     BrowserModule,

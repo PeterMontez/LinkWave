@@ -9,6 +9,7 @@ import { Forum } from '../interfaces/forum';
 import { PostData } from '../interfaces/post-data'
 import { Post } from '../interfaces/post'
 import { Jwt } from '../interfaces/jwt'
+import { ForumInfo } from '../interfaces/forum-info';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +22,16 @@ export class PostGetter {
     userjwt : Jwt = {
         value: localStorage.getItem('jwt'),
         id: Number(localStorage.getItem('userId'))
+    }
+
+    GetForumInfo()
+    {
+        this.userjwt = {
+            value: localStorage.getItem('jwt'),
+            id: Number(localStorage.getItem('userId'))
+        }
+        
+        return this.http.post<ForumInfo>(("http://localhost:5145/forum/info/") + localStorage.getItem('forumId'), this.userjwt)
     }
     
 

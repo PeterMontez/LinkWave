@@ -38,7 +38,8 @@
             <div class="col-md-3">
                 
                 <!-- INSERT SIDE / USER CARDS HERE -->
-                <!-- <app-user-card></app-user-card> -->
+                <app-user-card *ngIf="crrForumNumber < 0" [pagedata]="userinfo"></app-user-card>
+                <app-forum-card *ngIf="crrForumNumber > 0" [pagedata]="foruminfo"></app-forum-card>
 
             </div>
             <div class="col-md-6 gedf-main">

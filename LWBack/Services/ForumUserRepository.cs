@@ -33,7 +33,6 @@ public class ForumUserRepository : IForumUserRepository
 
         foreach (var forumUser in forumUserList)
         {
-
             var forumsquery =
                 from forum in context.Forums
                 where forum.ForumId == forumUser.ForumId

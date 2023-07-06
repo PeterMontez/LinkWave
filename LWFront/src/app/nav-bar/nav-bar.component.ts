@@ -23,9 +23,7 @@ export class NavBarComponent implements OnInit {
 
     logout()
     {
-        console.log("aa")
         localStorage.clear()
-        console.log(localStorage.getItem('userId'))
     }
 
 }

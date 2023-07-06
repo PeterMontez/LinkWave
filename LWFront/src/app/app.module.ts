@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ForumFeedComponent } from './forum-feed/forum-feed.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { SideCardForumsComponent } from './side-card-forums/side-card-forums.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NewPostComponent } from './new-post/new-post.component';
     UserCardComponent,
     LandingPageComponent,
     ForumFeedComponent,
-    NewPostComponent
+    NewPostComponent,
+    SideCardForumsComponent
   ],
   imports: [
     BrowserModule,

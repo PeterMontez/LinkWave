@@ -70,9 +70,10 @@ export class LoginPageComponent {
                 this.id = response.id
                 localStorage.setItem('jwt', this.token)
                 localStorage.setItem('userId', this.id)
+                localStorage.setItem('forumId', '0')
 
                 console.log(localStorage.getItem('jwt'));
-                console.log(localStorage.getItem('userId'));
+                
                 
                 this.router.navigateByUrl('/home')
             },

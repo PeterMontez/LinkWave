@@ -1,0 +1,36 @@
+.h7 {
+    font-size: 0.8rem;
+    color: #adcfae;
+}
+
+.card-text {
+    padding: 1px;
+    outline: #324879 solid 3px;
+    outline-offset: 6px;
+    margin-top: 20px;
+    color: #adcfae;
+}
+
+.card-title {
+    margin: auto;
+    color: #87c1ff;
+    margin-bottom: 10px;
+}
+
+.card-link {
+    color: #c2d8f0;
+}
+
+.h6 {
+    color: #4E9AEB;
+}
+
+.card {
+    background-color: #1c2733;
+}
+
+.list-group-item {
+    background-color: #213142;
+    color: #98b6a1;
+}
+

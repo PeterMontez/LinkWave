@@ -86,10 +86,6 @@ public class PostsController : ControllerBase
         [FromServices] IJwtService jwtService)
     {
 
-        System.Console.WriteLine(token.id);
-        System.Console.WriteLine(token.value);
-        System.Console.WriteLine("AAA");
-
         var result = jwtService.Validate<Jwt>(token.value);
 
         if (result.value == null || result.value == "")

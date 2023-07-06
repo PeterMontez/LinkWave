@@ -29,10 +29,13 @@ public class ForumUserRepository : IForumUserRepository
         
         var forumUserList = query.ToList();
 
+        System.Console.WriteLine(forumUserList.Count());
+        
         List<Forum> result = new();
 
         foreach (var forumUser in forumUserList)
         {
+
             var forumsquery =
                 from forum in context.Forums
                 where forum.ForumId == forumUser.ForumId

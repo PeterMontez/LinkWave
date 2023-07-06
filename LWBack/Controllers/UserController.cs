@@ -141,4 +141,64 @@ public class UserController : ControllerBase
         }
     }
 
+    [HttpPost("forums")]
+    [EnableCors("MainPolicy")]
+    public ActionResult Home(
+        [FromBody] Jwt token,
+        [FromServices] IPostsRepository repo,
+        [FromServices] IForumRepository forumrepo,
+        [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IUserRepository userrepo,
+        [FromServices] IJwtService jwtService)
+    {
+
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        if (result.value == null || result.value == "")
+        {
+            //TODO - Return not authorized
+            return BadRequest();
+        }
+
+        List<PostDisplayData> AllPosts = new();
+
+        foreach (var forum in forumuserrepo.ForumsByUserId(int.Parse(result.value)))
+        {
+            var fullposts = repo.FindByForum(forum.ForumId);
+
+            List<PostDisplayData> tempPosts = new List<PostDisplayData>();
+
+            foreach (var post in fullposts)
+            {
+                PostDisplayData tempPost = new();
+
+                tempPost.user = userrepo.FindById((int)post.UserId).Username;
+                tempPost.title = post.Title;
+                tempPost.content = post.Content;
+                tempPost.picture = post.Picture;
+                tempPost.likes = 0;
+                tempPost.dislikes = 0;
+                tempPost.forum = forumrepo.FindById((int)post.ForumId).Name;
+
+                tempPosts.Add(tempPost);
+
+            }
+
+            AllPosts.AddRange(tempPosts);
+
+        }
+
+        Random _rand = new();
+
+        for (int i = AllPosts.Count - 1; i > 0; i--)
+        {
+            var k = _rand.Next(i + 1);
+            var value = AllPosts[k];
+            AllPosts[k] = AllPosts[i];
+            AllPosts[i] = value;
+        }
+
+        return Ok(AllPosts);
+
+    }
 }

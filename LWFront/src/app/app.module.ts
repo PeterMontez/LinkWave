@@ -26,6 +26,7 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { SideCardForumsComponent } from './side-card-forums/side-card-forums.component';
 import { ForumCardComponent } from './forum-card/forum-card.component';
 import { ForumSearchComponent } from './forum-search/forum-search.component';
+import { ForumSearchCardComponent } from './forum-search-card/forum-search-card.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,10 @@ import { ForumSearchComponent } from './forum-search/forum-search.component';
     NewPostComponent,
     SideCardForumsComponent,
     ForumCardComponent,
-    ForumSearchComponent
+    ForumSearchComponent,
+    ForumSearchCardComponent
   ],
+
   imports: [
     BrowserModule,
     CommonModule,
@@ -60,4 +63,5 @@ import { ForumSearchComponent } from './forum-search/forum-search.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

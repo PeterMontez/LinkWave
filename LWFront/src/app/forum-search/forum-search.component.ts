@@ -10,6 +10,8 @@ export class ForumSearchComponent implements OnInit {
 
     param : string | null = ''
 
+    forumdata : any
+
     constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {

@@ -24,6 +24,8 @@ export class MainFeedComponent implements OnInit {
 
     userinfo : any;
 
+    dataAvailable = false
+
     foruminfo : ForumInfo = {
         name: '',
         createdat: '',
@@ -40,8 +42,7 @@ export class MainFeedComponent implements OnInit {
         this.crrForum = localStorage.getItem('forumId')
         this.crrForumNumber = Number(this.crrForum)
         this.loadCard().then(() => this.loadPosts())
-        console.log(this.foruminfo);
-        
+        this.dataAvailable = true
     }
 
     forum: Forum = {

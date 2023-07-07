@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ForumInfo } from '../interfaces/forum-info';
 
 @Component({
@@ -6,7 +6,7 @@ import { ForumInfo } from '../interfaces/forum-info';
     templateUrl: './forum-card.component.html',
     styleUrls: ['./forum-card.component.css']
 })
-export class ForumCardComponent {
+export class ForumCardComponent implements OnInit{
 
     @Input() pagedata: any;
 
@@ -19,7 +19,6 @@ export class ForumCardComponent {
     followers: number = 0
 
     ngOnInit() {
-        console.log(this.pagedata.name);
         
     }
 }

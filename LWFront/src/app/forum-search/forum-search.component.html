@@ -43,12 +43,12 @@
 
             </div>
             <div class="col-md-6 gedf-main">
-<!-- 
-                <app-new-post *ngIf="crrForumNumber > 0"></app-new-post>
 
-                <div *ngFor="let singlepost of posts">
-                    <app-feed-posts-v2 [postdata]="singlepost"></app-feed-posts-v2>
-                </div> -->
+                <!-- <app-new-post *ngIf="crrForumNumber > 0"></app-new-post> -->
+
+                <div *ngFor="let singleforum of forums">
+                    <app-feed-posts-v2 [forumdata]="singleforum"></app-feed-posts-v2>
+                </div>
 
 
                 <!-- INSERT POSTS HERE -->

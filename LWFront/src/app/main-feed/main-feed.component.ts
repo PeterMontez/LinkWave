@@ -39,8 +39,9 @@ export class MainFeedComponent implements OnInit {
     ngOnInit(): void {
         this.crrForum = localStorage.getItem('forumId')
         this.crrForumNumber = Number(this.crrForum)
-        this.loadCard()
-        this.loadPosts()
+        this.loadCard().then(() => this.loadPosts())
+        console.log(this.foruminfo);
+        
     }
 
     forum: Forum = {
@@ -50,7 +51,7 @@ export class MainFeedComponent implements OnInit {
         createdat: new Date
     }
 
-    loadCard() : void
+    async loadCard() : Promise<void>
     {
         if (Number(localStorage.getItem('forumId')) > 0) {
             this.service.GetForumInfo().subscribe(

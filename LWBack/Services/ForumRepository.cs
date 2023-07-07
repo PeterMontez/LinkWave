@@ -71,4 +71,17 @@ public class ForumRepository : IForumRepository
         context.Update(forum);
         context.SaveChanges();
     }
+
+    public List<Forum> Search(string forumName)
+    {
+        var query =
+            from forum in context.Forums
+            where forum.Name.Contains(forumName)
+            select forum;
+        
+        var forumList = query.ToList();
+        var result = forumList.FirstOrDefault();
+
+        return forumList;
+    }
 }

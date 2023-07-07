@@ -31,9 +31,15 @@ export class NavBarComponent implements OnInit {
         localStorage.clear()
     }
 
-    logoClick()
+    async logoClick()
     {
         localStorage.setItem('forumId', '0')
+        await this.router.navigateByUrl('/home')
+        this.reload()
+    }
+
+    reload()
+    {
         window.location.reload()
     }
 

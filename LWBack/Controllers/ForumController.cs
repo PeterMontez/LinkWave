@@ -134,4 +134,23 @@ public class ForumController : ControllerBase
         return Ok(forumCardData);
     }
 
+    [HttpPost("search/{input}")]
+    public ActionResult Search(
+        [FromBody] Jwt token,
+        [FromServices] IJwtService jwtService,
+        [FromServices] IForumRepository repo,
+        string input)
+    {
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        List<Forum> forums = repo.Search(input);
+
+        foreach (var item in forums)
+        {
+            System.Console.WriteLine(item.Name);
+        }
+
+        return Ok(forums);
+    }
+
 }

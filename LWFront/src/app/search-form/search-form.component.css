@@ -1,0 +1,7 @@
+input::placeholder{
+    color: rgb(90, 143, 179);
+  }
+
+textarea:focus, input:focus {
+    color: #faf6f6;
+}

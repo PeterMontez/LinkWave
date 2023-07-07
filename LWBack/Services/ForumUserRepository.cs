@@ -90,6 +90,27 @@ public class ForumUserRepository : IForumUserRepository
 
     public List<User> UsersByForumId(int forumId)
     {
-        throw new NotImplementedException();
+        var query =
+            from forumUser in context.ForumUsers
+            where forumUser.ForumId == forumId
+            select forumUser;
+        
+        var forumUserList = query.ToList();
+        
+        List<User> result = new();
+
+        foreach (var forumUser in forumUserList)
+        {
+            var usersquery =
+                from users in context.Users
+                where users.UserId == forumUser.UserId
+                select users;
+
+            var singleUser = usersquery.ToList();
+
+            result.Add(singleUser.FirstOrDefault());
+        }
+
+        return result;
     }
 }

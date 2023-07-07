@@ -10,12 +10,14 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { SideCardsComponent } from './side-cards/side-cards.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ForumSearchComponent } from './forum-search/forum-search.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
   { path: "login", component: LoginPageComponent },
   { path: "register", component: SignUpComponent },
-  { path: "home", component: MainFeedComponent}
+  { path: "home", component: MainFeedComponent},
+  { path: "forums/:param", component : ForumSearchComponent }
 ];
 
 @NgModule({

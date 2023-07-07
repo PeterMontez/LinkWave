@@ -74,6 +74,20 @@ public class ForumUserRepository : IForumUserRepository
         throw new NotImplementedException();
     }
 
+    public ForumUser GetForumUser(int UserId, int forumId)
+    {
+        var query =
+            from forumUser in context.ForumUsers
+            where forumUser.UserId == UserId
+            where forumUser.ForumId == forumId
+            select forumUser;
+        
+        var positionList = query.ToList();
+        var result = positionList.FirstOrDefault();
+    
+        return result;
+    }
+
     public List<User> UsersByForumId(int forumId)
     {
         throw new NotImplementedException();

@@ -8,6 +8,7 @@ public interface IForumUserRepository
 {
     public List<Forum>? ForumsByUserId(int userId);
     public List<User>? UsersByForumId(int forumId);
+    public ForumUser GetForumUser(int UserId, int forumId);
     public bool IsMemberOf(ForumUser forumUser);
     public void Create(ForumUser forumUser);
     public void Update(ForumUser forumUser);

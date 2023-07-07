@@ -10,6 +10,7 @@ using LWBack.Model;
 using LWBack.HashManager;
 using LWBack.Data;
 using LWBack.Services;
+using Security_jwt;
 
 namespace LWBack.Controllers;
 
@@ -22,8 +23,13 @@ public class ForumController : ControllerBase
     [HttpPost("create")]
     public ActionResult Create(
         [FromBody] NewForumData data,
-        [FromServices] IForumRepository repo)
+        [FromServices] IForumRepository repo,
+        [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IJwtService jwtService,
+        [FromServices] IPositionRepository positionrepo)
     {
+        var result = jwtService.Validate<Jwt>(data.Token);
+
         Forum newForum = new Forum();
         newForum.Name = data.Name;
         newForum.Description = data.Description;
@@ -32,6 +38,27 @@ public class ForumController : ControllerBase
         if (repo.CheckNewForum(newForum).Result)
         {
             repo.Create(newForum);
+
+            Position position = new();
+
+            position.Name = "Owner";
+            position.ForumId = repo.FindByName(newForum.Name).ForumId;
+            positionrepo.Create(position);
+
+            Position newposition = new();
+
+            newposition.Name = "User";
+            newposition.ForumId = repo.FindByName(newForum.Name).ForumId;
+            positionrepo.Create(newposition);
+
+            ForumUser forumUser = new();
+
+            forumUser.UserId = int.Parse(result.value);
+            forumUser.ForumId = repo.FindByName(newForum.Name).ForumId;
+            forumUser.PositionId = positionrepo.FindByName("Owner", repo.FindByName(newForum.Name).ForumId).PositionId;
+
+            forumuserrepo.Create(forumUser);
+
             return Ok();
         }
 
@@ -79,8 +106,11 @@ public class ForumController : ControllerBase
     public ActionResult GetInfo(
         [FromBody] Jwt token,
         [FromServices] IForumRepository repo,
+        [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IPositionRepository positionrepo,
         [FromServices] IJwtService jwtService, string id)
     {
+        var result = jwtService.Validate<Jwt>(token.value);
 
         // name: string
         // createdat: string
@@ -90,16 +120,18 @@ public class ForumController : ControllerBase
 
         ForumCardData forumCardData = new();
 
-        var result = jwtService.Validate<Jwt>(token.value);
+        Forum crrforum = repo.FindById(int.Parse(id));
 
-        
+        forumCardData.name = crrforum.Name;
+        forumCardData.createdat = crrforum.CreatedAt.ToString("dd/MM/yyyy");
+        forumCardData.description = crrforum.Description;
 
-        // position.Name = data.name;
-        // position.ForumId = data.forumId;
+        ForumUser forumUser = forumuserrepo.GetForumUser(int.Parse(result.value), int.Parse(id));
 
-        // repo.Create(position);
+        forumCardData.position = positionrepo.FindById((int)forumUser.PositionId).Name;
+        forumCardData.followers = forumuserrepo.UsersByForumId(crrforum.ForumId).Count();
 
-        return Ok();
+        return Ok(forumCardData);
     }
 
 }

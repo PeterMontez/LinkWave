@@ -20,6 +20,19 @@ public class PositionRepository : IPositionRepository
         context.SaveChanges();
     }
 
+    public List<Position> FindByForum(int forumId)
+    {
+        var query =
+            from position in context.Positions
+            where position.ForumId == forumId
+            select position;
+        
+        var positionList = query.ToList();
+        // var result = positionList.FirstOrDefault();
+
+        return positionList;
+    }
+
     public Position? FindById(int positionId)
     {
         var query =

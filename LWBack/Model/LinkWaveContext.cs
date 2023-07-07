@@ -39,7 +39,7 @@ public partial class LinkWaveContext : DbContext
     {
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.ForumId).HasName("PK__Forums__E49CFD0B461A168F");
+            entity.HasKey(e => e.ForumId).HasName("PK__Forums__E49CFD0B2AA3680A");
 
             entity.Property(e => e.ForumId).HasColumnName("Forum_id");
             entity.Property(e => e.CreatedAt)
@@ -57,26 +57,31 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<ForumUser>(entity =>
         {
-            entity.HasKey(e => e.AssociationId).HasName("PK__ForumUse__12E511F95E24BC04");
+            entity.HasKey(e => e.AssociationId).HasName("PK__ForumUse__12E511F91587EDEB");
 
             entity.ToTable("ForumUser");
 
             entity.Property(e => e.AssociationId).HasColumnName("Association_id");
             entity.Property(e => e.ForumId).HasColumnName("Forum_id");
+            entity.Property(e => e.PositionId).HasColumnName("Position_id");
             entity.Property(e => e.UserId).HasColumnName("User_id");
 
             entity.HasOne(d => d.Forum).WithMany(p => p.ForumUsers)
                 .HasForeignKey(d => d.ForumId)
-                .HasConstraintName("FK__ForumUser__Forum__3C69FB99");
+                .HasConstraintName("FK__ForumUser__Forum__3F466844");
+
+            entity.HasOne(d => d.Position).WithMany(p => p.ForumUsers)
+                .HasForeignKey(d => d.PositionId)
+                .HasConstraintName("FK__ForumUser__Posit__403A8C7D");
 
             entity.HasOne(d => d.User).WithMany(p => p.ForumUsers)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__ForumUser__User___3B75D760");
+                .HasConstraintName("FK__ForumUser__User___3E52440B");
         });
 
         modelBuilder.Entity<Permission>(entity =>
         {
-            entity.HasKey(e => e.PermissionId).HasName("PK__Permissi__89B4589DBC519370");
+            entity.HasKey(e => e.PermissionId).HasName("PK__Permissi__89B4589D5322FDDE");
 
             entity.Property(e => e.PermissionId).HasColumnName("Permission_id");
             entity.Property(e => e.Name)
@@ -86,7 +91,7 @@ public partial class LinkWaveContext : DbContext
 
         modelBuilder.Entity<PosPerm>(entity =>
         {
-            entity.HasKey(e => e.PosPermId).HasName("PK__PosPerm__59E1C83D734B8135");
+            entity.HasKey(e => e.PosPermId).HasName("PK__PosPerm__59E1C83DD4A00C2A");
 
             entity.ToTable("PosPerm");
 
@@ -96,16 +101,16 @@ public partial class LinkWaveContext : DbContext
 
             entity.HasOne(d => d.Permission).WithMany(p => p.PosPerms)
                 .HasForeignKey(d => d.PermissionId)
-                .HasConstraintName("FK__PosPerm__Permiss__47DBAE45");
+                .HasConstraintName("FK__PosPerm__Permiss__48CFD27E");
 
             entity.HasOne(d => d.Position).WithMany(p => p.PosPerms)
                 .HasForeignKey(d => d.PositionId)
-                .HasConstraintName("FK__PosPerm__Positio__48CFD27E");
+                .HasConstraintName("FK__PosPerm__Positio__49C3F6B7");
         });
 
         modelBuilder.Entity<Position>(entity =>
         {
-            entity.HasKey(e => e.PositionId).HasName("PK__Position__3C3D9A7E842B87C0");
+            entity.HasKey(e => e.PositionId).HasName("PK__Position__3C3D9A7EF38A5CDF");
 
             entity.Property(e => e.PositionId).HasColumnName("Position_id");
             entity.Property(e => e.ForumId).HasColumnName("Forum_id");
@@ -115,12 +120,12 @@ public partial class LinkWaveContext : DbContext
 
             entity.HasOne(d => d.Forum).WithMany(p => p.Positions)
                 .HasForeignKey(d => d.ForumId)
-                .HasConstraintName("FK__Positions__Forum__4316F928");
+                .HasConstraintName("FK__Positions__Forum__3B75D760");
         });
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.PostId).HasName("PK__Posts__587ADB65001EB4A9");
+            entity.HasKey(e => e.PostId).HasName("PK__Posts__587ADB65475EB6D1");
 
             entity.Property(e => e.PostId).HasColumnName("Post_id");
             entity.Property(e => e.Content)
@@ -137,16 +142,16 @@ public partial class LinkWaveContext : DbContext
 
             entity.HasOne(d => d.Forum).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.ForumId)
-                .HasConstraintName("FK__Posts__Forum_id__403A8C7D");
+                .HasConstraintName("FK__Posts__Forum_id__440B1D61");
 
             entity.HasOne(d => d.User).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Posts__User_id__3F466844");
+                .HasConstraintName("FK__Posts__User_id__4316F928");
         });
 
         modelBuilder.Entity<Rating>(entity =>
         {
-            entity.HasKey(e => e.RatingId).HasName("PK__Ratings__BE49CCDD1605418D");
+            entity.HasKey(e => e.RatingId).HasName("PK__Ratings__BE49CCDDF0602E0D");
 
             entity.Property(e => e.RatingId).HasColumnName("Rating_id");
             entity.Property(e => e.PostId).HasColumnName("Post_id");
@@ -155,16 +160,16 @@ public partial class LinkWaveContext : DbContext
 
             entity.HasOne(d => d.Post).WithMany(p => p.Ratings)
                 .HasForeignKey(d => d.PostId)
-                .HasConstraintName("FK__Ratings__Post_id__4CA06362");
+                .HasConstraintName("FK__Ratings__Post_id__4D94879B");
 
             entity.HasOne(d => d.User).WithMany(p => p.Ratings)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Ratings__User_id__4BAC3F29");
+                .HasConstraintName("FK__Ratings__User_id__4CA06362");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__206A9DF8EE343C11");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__206A9DF85B52CD71");
 
             entity.Property(e => e.UserId).HasColumnName("User_id");
             entity.Property(e => e.BirthDate).HasColumnType("date");

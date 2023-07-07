@@ -11,7 +11,11 @@ public partial class ForumUser
 
     public int? ForumId { get; set; }
 
+    public int? PositionId { get; set; }
+
     public virtual Forum Forum { get; set; }
+
+    public virtual Position Position { get; set; }
 
     public virtual User User { get; set; }
 }

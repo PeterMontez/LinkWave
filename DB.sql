@@ -29,12 +29,22 @@ create table Forums(
 );
 go
 
+create table Positions(
+    Position_id int identity primary key,
+    Name varchar(30),
+    Forum_id int,
+    foreign key (Forum_id) references Forums(Forum_id),
+);
+go
+
 create table ForumUser(
     Association_id int identity primary key,
     User_id int,
     Forum_id int,
+	Position_id int,
     foreign key (User_id) references Users(User_id),
-    foreign key (Forum_id) references Forums(Forum_id)
+    foreign key (Forum_id) references Forums(Forum_id),
+	foreign key (Position_id) references Positions(Position_id)
 );
 go
 
@@ -46,14 +56,6 @@ create table Posts(
     User_id int,
     Forum_id int,
     foreign key (User_id) references Users(User_id),
-    foreign key (Forum_id) references Forums(Forum_id),
-);
-go
-
-create table Positions(
-    Position_id int identity primary key,
-    Name varchar(30),
-    Forum_id int,
     foreign key (Forum_id) references Forums(Forum_id),
 );
 go

@@ -13,5 +13,7 @@ public partial class Position
 
     public virtual Forum Forum { get; set; }
 
+    public virtual ICollection<ForumUser> ForumUsers { get; set; } = new List<ForumUser>();
+
     public virtual ICollection<PosPerm> PosPerms { get; set; } = new List<PosPerm>();
 }

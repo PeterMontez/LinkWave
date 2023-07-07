@@ -95,6 +95,8 @@ public class UserController : ControllerBase
         [FromBody] Jwt token,
         [FromServices] IUserRepository repo,
         [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IForumRepository forumrepo,
+        [FromServices] IPositionRepository positionrepo,
         [FromServices] IJwtService jwtService, string id)
     {
 
@@ -104,6 +106,7 @@ public class UserController : ControllerBase
 
         forumUser.ForumId = int.Parse(id);
         forumUser.UserId = int.Parse(result.value);
+        forumUser.PositionId = positionrepo.FindByName("User", int.Parse(id)).PositionId;
 
         if (!forumuserrepo.IsMemberOf(forumUser))
         {

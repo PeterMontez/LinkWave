@@ -109,4 +109,19 @@ public class UserRepository : IUserRepository
 
     }
 
+    public Position PositionByUserId(int userId)
+    {
+        Position position = new();
+        return  position;
+
+        // var query =
+        //     from user in context.Users
+        //     where user.UserId == 
+        //     select user;
+        
+        // var userList = query.ToList();
+        // var logged = userList.FirstOrDefault();
+
+        // return logged;
+    }
 }

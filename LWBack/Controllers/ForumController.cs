@@ -48,7 +48,7 @@ public class ForumController : ControllerBase
         [FromServices] IPositionRepository repo)
     {
         Position position = new();
-        
+
         position.Name = data.name;
         position.ForumId = data.forumId;
 
@@ -75,14 +75,31 @@ public class ForumController : ControllerBase
         return Ok();
     }
 
-
-
-    [HttpGet("home/{forumName}")]
-    public IEnumerable<Post>? GetPosts(
-    )
+    [HttpPost("info/{id}")]
+    public ActionResult GetInfo(
+        [FromBody] Jwt token,
+        [FromServices] IForumRepository repo,
+        [FromServices] IJwtService jwtService, string id)
     {
-        // Where and linq stuff to get the posts
-        return null;
+
+        // name: string
+        // createdat: string
+        // description: string
+        // position: string
+        // followers: number
+
+        ForumCardData forumCardData = new();
+
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        
+
+        // position.Name = data.name;
+        // position.ForumId = data.forumId;
+
+        // repo.Create(position);
+
+        return Ok();
     }
 
 }

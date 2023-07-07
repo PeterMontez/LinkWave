@@ -89,30 +89,31 @@ public class UserController : ControllerBase
             return BadRequest("Invalid Username or Password");
     }
 
-    [HttpPost("subscribe")]
+    [HttpPost("subscribe/{id}")]
     [EnableCors("MainPolicy")]
     public ActionResult Subscribe(
-        [FromBody] SignInData data,
-        [FromServices] IUserRepository repo)
+        [FromBody] Jwt token,
+        [FromServices] IUserRepository repo,
+        [FromServices] IForumUserRepository forumuserrepo,
+        [FromServices] IJwtService jwtService, string id)
     {
-        User newUser = new User();
-        newUser.Email = data.email;
-        newUser.Username = data.username;
-        newUser.Salt = SaltManager.GetSalt(16);
-        newUser.PasswordHash = Hasher.Hash(SaltManager.AddSalt(data.password, newUser.Salt));
-        newUser.BirthDate = data.birthdate;
-        newUser.Picture = data.picture;
 
-        if (repo.CheckNewUser(newUser).Result)
+        var result = jwtService.Validate<Jwt>(token.value);
+
+        ForumUser forumUser = new();
+
+        forumUser.ForumId = int.Parse(id);
+        forumUser.UserId = int.Parse(result.value);
+
+        if (!forumuserrepo.IsMemberOf(forumUser))
         {
-            repo.Create(newUser);
+            forumuserrepo.Create(forumUser);
             return Ok();
         }
 
-        else
-        {
-            return BadRequest(repo.CheckNewUser(newUser).ReturnMsg);
-        }
+        forumuserrepo.Remove(forumUser);
+        return Ok();
+        
     }
 
     [HttpPost("like")]
@@ -170,7 +171,7 @@ public class UserController : ControllerBase
             displayData.id = forum.ForumId;
 
             forums.Add(displayData);
-        } 
+        }
 
         return Ok(forums);
 

@@ -46,9 +46,27 @@ public class ForumUserRepository : IForumUserRepository
         return result;
     }
 
+    public bool IsMemberOf(ForumUser forumUser)
+    {
+
+        var query =
+            from forumUser2 in context.ForumUsers
+            where forumUser2.UserId == forumUser.UserId
+            where forumUser2.ForumId == forumUser.ForumId
+            select forumUser2;
+        
+        var forumUser2List = query.ToList();
+
+        if (forumUser2List.FirstOrDefault() == null)
+            return false;
+        return true;
+
+    }
+
     public void Remove(ForumUser forumUser)
     {
-        throw new NotImplementedException();
+        context.Remove(forumUser);
+        context.SaveChanges();
     }
 
     public void Update(ForumUser forumUser)

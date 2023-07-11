@@ -17,8 +17,8 @@ export class SearchFormComponent {
         this.router = router;
     }
 
-    Search() {
-        this.router.navigateByUrl('/forums/' + this.search)
-        
+    async Search() {
+        await this.router.navigateByUrl('/forums/' + this.search)
+        await window.location.reload()
     }
 }

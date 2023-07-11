@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user-service';
+import { ForumSearchData } from '../interfaces/forum-search-data';
+import { ForumService } from '../services/forum-service';
 
 @Component({
     selector: 'app-forum-search',
@@ -8,25 +11,38 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ForumSearchComponent implements OnInit {
 
-    param : string | null = ''
+    param: string | null = ''
 
-    forumdata : any
+    forums: ForumSearchData[] = []
 
-    constructor(private route: ActivatedRoute) {}
+    router: Router;
+
+    constructor(private route: ActivatedRoute, private service: ForumService, router: Router) {
+        this.router = router;
+    }
 
     ngOnInit() {
         this.GetParam()
         this.GetForums()
     }
 
-    GetParam() : void {
+    GetParam(): void {
         this.route.paramMap.subscribe(params => {
             this.param = params.get('param');
-          });
+        });
     }
 
-    GetForums() : void {
-        
+    GetForums(): void {
+        this.service.GetAllForums(this.param).subscribe(
+            x => {
+                let list: ForumSearchData[] = []
+                x.forEach(element => {
+                    list.push(element)
+                });
+                this.forums = list
+                console.log(this.forums)
+            }
+        )
     }
 
 

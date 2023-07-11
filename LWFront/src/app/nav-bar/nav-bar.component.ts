@@ -29,6 +29,7 @@ export class NavBarComponent implements OnInit {
     logout()
     {
         localStorage.clear()
+        this.router.navigateByUrl('/login')
     }
 
     async logoClick()

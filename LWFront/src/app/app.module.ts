@@ -27,6 +27,7 @@ import { SideCardForumsComponent } from './side-card-forums/side-card-forums.com
 import { ForumCardComponent } from './forum-card/forum-card.component';
 import { ForumSearchComponent } from './forum-search/forum-search.component';
 import { ForumSearchCardComponent } from './forum-search-card/forum-search-card.component';
+import { NewForumComponent } from './new-forum/new-forum.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ForumSearchCardComponent } from './forum-search-card/forum-search-card.
     SideCardForumsComponent,
     ForumCardComponent,
     ForumSearchComponent,
-    ForumSearchCardComponent
+    ForumSearchCardComponent,
+    NewForumComponent
   ],
 
   imports: [

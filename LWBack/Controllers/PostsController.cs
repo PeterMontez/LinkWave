@@ -21,6 +21,28 @@ namespace LWBack.Controllers;
 public class PostsController : ControllerBase
 {
 
+    [HttpPost("rate")]
+    public ActionResult Rate(
+        [FromBody] NewRating data,
+        [FromServices] IRatingRepository ratingrepo,
+        [FromServices] IPostsRepository repo)
+    {
+        Rating rating = new();
+
+        rating.Rating1 = data.rate;
+        rating.UserId = data.userid;
+        rating.PostId = data.postid;
+
+        if(ratingrepo.Check(data.userid, data.postid))
+        {
+            ratingrepo.Create(rating);
+            return Ok(true);
+        }
+
+        return Ok(false);
+
+    }
+
     [HttpPost("create")]
     public ActionResult Create(
         [FromBody] PostData data,

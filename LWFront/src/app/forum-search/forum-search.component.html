@@ -47,9 +47,8 @@
                 <!-- <app-new-post *ngIf="crrForumNumber > 0"></app-new-post> -->
 
                 <div *ngFor="let singleforum of forums">
-                    <app-feed-posts-v2 [forumdata]="singleforum"></app-feed-posts-v2>
+                    <app-forum-search-card [pagedata]="singleforum"></app-forum-search-card>
                 </div>
-
 
                 <!-- INSERT POSTS HERE -->
 

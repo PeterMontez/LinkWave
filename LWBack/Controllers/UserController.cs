@@ -111,7 +111,7 @@ public class UserController : ControllerBase
         if (!forumuserrepo.IsMemberOf(forumUser))
         {
             forumuserrepo.Create(forumUser);
-            return Ok();
+            return Ok(true);
         }
 
         forumuserrepo.Remove(forumUser);

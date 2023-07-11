@@ -7,6 +7,7 @@ namespace LWBack.Services;
 public interface IRatingRepository
 {
     public Rating? FindById(int ratingId);
+    public bool Check(int userid, int postid);
     // public List<Rating> FindByPost(int postId);
     public void Create(Rating rating);
     public void Remove(Rating rating);

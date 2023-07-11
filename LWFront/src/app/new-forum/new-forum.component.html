@@ -4,30 +4,29 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="mr-2">
+                <!-- <div class="mr-2">
                     <img class="rounded-circle" width="45" src="../../assets/img/default.jpg" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0">@ {{loggedUser}}</div>
-                    <div class="h7 text-muted">{{currentForum}}</div>
-                </div>
+                    <div class="h5 m-0">Not Satisfied?</div>
+                </div> -->
             </div>
         </div>
 
     </div>
     <div class="card-body">
 
-        <button class="custom-btn btn-3" *ngIf="!postIntent" (click)="userClick()">New Post</button>
+        <button class="custom-btn btn-3" *ngIf="!postIntent" (click)="userClick()">New Forum</button>
 
         <div *ngIf="postIntent">
             <form> 
                 <div class="user-box">
-                    <input type="text" name="user" required="" [(ngModel)]="title">
-                    <label>Title</label>
+                    <input type="text" name="user" required="" [(ngModel)]="name">
+                    <label>Name</label>
                 </div>
                 <div class="user-box">
-                    <textarea name="content" required="" rows="6" maxlength="500" [(ngModel)]="content"></textarea>
-                    <label>Content</label>
+                    <textarea name="content" required="" rows="6" maxlength="200" [(ngModel)]="description"></textarea>
+                    <label>Description</label>
                 </div>
                 
                 <div *ngIf="errormsg != ''" class="error">
@@ -42,7 +41,7 @@
         
     </div>
     <div class="card-footer">
-        <a *ngIf="postIntent" herf="javascript: void(0);" (click)="Post()" class="actionButtons"><i class="fa fa-check"></i> Post</a>
+        <a *ngIf="postIntent" herf="javascript: void(0);" (click)="Post()" class="actionButtons"><i class="fa fa-check"></i> Create</a>
         <a *ngIf="postIntent" herf="javascript: void(0);" (click)="userClick()" class="actionButtons"><i class="fa fa-times"></i> Cancel</a>
     </div>
 

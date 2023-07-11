@@ -5,20 +5,35 @@ import { HttpClientModule } from '@angular/common/http';
 import { pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginData } from '../interfaces/login-data';
+import { Jwt } from '../interfaces/jwt';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  loginUser(loginInput : LoginData) {
-    return this.http.post('http://localhost:5145/user/login/', loginInput)
-  };
+    userjwt: Jwt = {
+        value: localStorage.getItem('jwt'),
+        id: Number(localStorage.getItem('userId'))
+    }
 
-  registerUser(crrUser : User) {
-    return this.http.post('http://localhost:5145/user/signin/', crrUser)
-  }
+    loginUser(loginInput: LoginData) {
+        return this.http.post('http://localhost:5145/user/login/', loginInput)
+    };
+
+    registerUser(crrUser: User) {
+        return this.http.post('http://localhost:5145/user/signin/', crrUser)
+    }
+
+    subscribeUser(forumId: Number) {
+        this.userjwt = {
+            value: localStorage.getItem('jwt'),
+            id: Number(localStorage.getItem('userId'))
+        }
+        return this.http.post<boolean>('http://localhost:5145/user/subscribe/' + forumId, this.userjwt)
+    }
+
 }

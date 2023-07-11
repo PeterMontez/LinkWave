@@ -7,8 +7,7 @@
                     <img class="rounded-circle" width="45" src="../../assets/img/default.jpg" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0">@{{user}}</div>
-                    <div class="h7 text-muted">{{forum}}</div>
+                    <div class="h5 m-0">@ {{name}}</div>
                 </div>
             </div>
             <div>
@@ -30,7 +29,7 @@
     </div>
     <div class="card-body">
         <a class="card-link" href="#">
-            <h5 class="card-title">{{title}}</h5>
+            <h5 class="card-title">{{description}}</h5>
         </a>
 
         <!-- <div class="post-image">
@@ -38,11 +37,11 @@
         </div> -->
 
         <p class="card-text">
-            {{content}}
+            {{followers}} {{followers == 1 ? 'follower' : 'followers'}}
         </p>
     </div>
     <div class="card-footer">
-        <a href="#" class="card-link"><i class="fa fa-thumbs-up"></i> Like</a>
-        <a href="#" class="card-link"><i class="fa fa-thumbs-down"></i> Dislike</a>
+        <a href="javascript: void(0);" (click)="subscribeClick();" class="card-link"><i class="fa fa-thumbs-up"></i> Follow</a>
+        <!-- <a href="#" class="card-link"><i class="fa fa-thumbs-down"></i> Dislike</a> -->
     </div>
 </div>

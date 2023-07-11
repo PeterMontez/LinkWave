@@ -59,7 +59,7 @@ public class ForumController : ControllerBase
 
             forumuserrepo.Create(forumUser);
 
-            return Ok();
+            return Ok(true);
         }
 
         else
@@ -138,6 +138,7 @@ public class ForumController : ControllerBase
     public ActionResult Search(
         [FromBody] Jwt token,
         [FromServices] IJwtService jwtService,
+        [FromServices] IForumUserRepository forumuserrepo,
         [FromServices] IForumRepository repo,
         string input)
     {
@@ -145,12 +146,21 @@ public class ForumController : ControllerBase
 
         List<Forum> forums = repo.Search(input);
 
-        foreach (var item in forums)
+        List<ForumSearchData> searchData = new();
+        
+        foreach (var forum in forums)
         {
-            System.Console.WriteLine(item.Name);
+            ForumSearchData tempData = new();
+
+            tempData.name = forum.Name;
+            tempData.id = forum.ForumId;
+            tempData.followers = forumuserrepo.UsersByForumId(forum.ForumId).Count().ToString();
+            tempData.description = forum.Description;
+
+            searchData.Add(tempData);
         }
 
-        return Ok(forums);
+        return Ok(searchData);
     }
 
 }
